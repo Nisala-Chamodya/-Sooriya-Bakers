@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="pane" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.blacky.bakerymanagement.controller.AdminCustomerViewFormController">
+   <children>
+      <ImageView fitHeight="1000.0" fitWidth="1920.0" pickOnBounds="true">
+         <image>
+            <Image url="@../assets/welcome.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane opacity="0.92" prefHeight="1000.0" prefWidth="1920.0" style="-fx-background-color: black;">
+         <children>
+            <Label layoutX="552.0" layoutY="14.0" text="View Customers." textFill="#d35400">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="96.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="215.0" fitWidth="215.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/logo.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="144.0" layoutY="223.0" prefHeight="716.0" prefWidth="1356.0" style="-fx-background-color: white;">
+         <children>
+            <ImageView fitHeight="61.0" fitWidth="100.0" onMouseClicked="#backImgOnClickAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/back.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <TableView fx:id="tblCustomer" layoutX="115.0" layoutY="140.0" prefHeight="527.0" prefWidth="1155.0">
+              <columns>
+                <TableColumn fx:id="colCustId" prefWidth="168.00003051757812" text="Cust_id" />
+                <TableColumn fx:id="colName" prefWidth="146.0" text="Name" />
+                  <TableColumn fx:id="colNic" prefWidth="127.0" text="N.I.C" />
+                  <TableColumn fx:id="colAddress" prefWidth="98.0" text="Address" />
+                  <TableColumn fx:id="colTpNo" prefWidth="244.0" text="T.p.Number" />
+                  <TableColumn fx:id="colOption" prefWidth="373.0" text="Option" />
+              </columns>
+            </TableView>
+            <JFXTextField fx:id="txtSearch" layoutX="192.0" layoutY="85.0" prefHeight="31.0" prefWidth="895.0" promptText="Search Customer Here !" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="pane" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.blacky.bakerymanagement.controller.PlaceOrderFormController">
+   <children>
+      <ImageView fitHeight="1000.0" fitWidth="1920.0" pickOnBounds="true">
+         <image>
+            <Image url="@../assets/welcome.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutY="-5.0" opacity="0.92" prefHeight="1008.0" prefWidth="1920.0" style="-fx-background-color: black;">
+         <children>
+            <ImageView fitHeight="168.0" fitWidth="166.0" layoutX="7.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/logo.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="621.0" layoutY="25.0" prefHeight="67.0" prefWidth="487.0" text="Place Order" textFill="#d35400">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="83.0" />
+               </font>
+            </Label>
+            <AnchorPane layoutX="100.0" layoutY="199.0" prefHeight="779.0" prefWidth="1455.0" style="-fx-background-color: white;">
+               <children>
+                  <ImageView fitHeight="46.0" fitWidth="65.0" onMouseClicked="#backImgOnClickAction" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/back.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <JFXTextField fx:id="txtOrderId" editable="false" layoutX="139.0" layoutY="19.0" promptText="Order id" />
+                  <JFXTextField fx:id="txtOrderDate" editable="false" layoutX="694.0" layoutY="19.0" promptText="Date" />
+                  <Label layoutX="37.0" layoutY="62.0" prefHeight="67.0" prefWidth="487.0" text="Customer Details" textFill="#f55939">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="31.0" />
+                     </font>
+                  </Label>
+                  <JFXComboBox fx:id="cmbCustId" layoutX="43.0" layoutY="126.0" prefHeight="31.0" prefWidth="198.0" promptText="Customer Id" />
+                  <JFXTextField fx:id="txtCustName" editable="false" layoutX="281.0" layoutY="130.0" promptText="Name" />
+                  <JFXTextField fx:id="txtNic" editable="false" layoutX="494.0" layoutY="130.0" promptText="N.i.c." />
+                  <JFXTextField fx:id="txtAddress" editable="false" layoutX="724.0" layoutY="130.0" promptText="N.i.c." text="Address" />
+                  <JFXTextField fx:id="txtTpNo" editable="false" layoutX="945.0" layoutY="129.0" promptText="N.i.c." text="T.P-No" />
+                  <ImageView fitHeight="82.0" fitWidth="69.0" layoutX="1264.0" layoutY="108.0" onMouseClicked="#addCustomerImgOnClickAction" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/add.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <Label layoutX="32.0" layoutY="171.0" prefHeight="52.0" prefWidth="386.0" text="Product Details" textFill="#f55939">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="31.0" />
+                     </font>
+                  </Label>
+                  <JFXComboBox fx:id="cmbProductId" layoutX="36.0" layoutY="229.0" prefHeight="31.0" prefWidth="209.0" promptText="Product id" />
+                  <JFXTextField fx:id="txtProductName" editable="false" layoutX="300.0" layoutY="228.0" promptText="Name" />
+                  <JFXTextField fx:id="txtPrice" editable="false" layoutX="487.0" layoutY="234.0" promptText="Name" text="Price" />
+                  <JFXTextField fx:id="txtDescription" editable="false" layoutX="710.0" layoutY="235.0" promptText="Name" text="Description" />
+                  <JFXTextField fx:id="txtAvailability" editable="false" layoutX="905.0" layoutY="239.0" promptText="Name" text="Availabilitiy" />
+                  <JFXTextField fx:id="txtQty" layoutX="1108.0" layoutY="240.0" prefHeight="31.0" prefWidth="112.0" promptText="QTY" />
+                  <ImageView fitHeight="82.0" fitWidth="69.0" layoutX="1265.0" layoutY="218.0" onMouseClicked="#addProductImgOnClickAction" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/add.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <TableView fx:id="tblCart" layoutX="31.0" layoutY="360.0" prefHeight="200.0" prefWidth="1304.0">
+                    <columns>
+                      <TableColumn fx:id="colProductId" prefWidth="97.66667175292969" text="Product id" />
+                      <TableColumn fx:id="colName" prefWidth="244.9999542236328" text="Name" />
+                        <TableColumn fx:id="colPrice" prefWidth="181.0" text="price" />
+                        <TableColumn fx:id="colDescription" prefWidth="238.0" text="Description" />
+                        <TableColumn fx:id="colQty" prefWidth="127.33331298828125" text="QTY" />
+                        <TableColumn fx:id="colTotal" prefWidth="85.0" text="Total" />
+                        <TableColumn fx:id="colOption" prefWidth="443.0" text="Option" />
+                    </columns>
+                  </TableView>
+                  <JFXButton layoutX="1130.0" layoutY="301.0" onAction="#btnAddToCartOnAction" prefHeight="52.0" prefWidth="175.0" styleClass="PlaceOrder-ADDTOCARTbtn" stylesheets="@../style.css" text="Add To Cart">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton layoutX="1297.0" layoutY="724.0" onAction="#btnPlaceOrderOnAction" styleClass="PlaceOrder-PLACEORDERbtn" stylesheets="@../style.css" text="Place Order">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </JFXButton>
+                  <Label layoutX="63.0" layoutY="636.0" text="Total :" textFill="#ea2027">
+                     <font>
+                        <Font size="59.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="txtTotal" layoutX="249.0" layoutY="638.0" text="0.00" textFill="#ea2027">
+                     <font>
+                        <Font size="59.0" />
+                     </font>
+                  </Label>
+                  <JFXTextField fx:id="txtCashierName" layoutX="1160.0" layoutY="31.0" promptText="Type Cahier Name" />
+                  <ImageView fitHeight="31.0" fitWidth="39.0" layoutX="1133.0" layoutY="312.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/addtocart.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <Label fx:id="lblTime" layoutX="834.0" layoutY="125.0" prefHeight="54.0" prefWidth="816.0" text="                                    10:20" textFill="#ffb200">
+               <font>
+                  <Font name="System Bold" size="61.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,261 @@
+.start-btn{
+    -fx-background-color: #ffa801;
+    -fx-border-radius: 40px;
+    -fx-background-radius: 40px;
+    -fx-border-color: 3px white;
+}
+
+.start-btn:hover{
+    -fx-background-color: white;
+    -fx-background-radius: 40px;
+    -fx-border-radius: 40px;
+    -fx-border-color: 3px  #ffa801;
+    -fx-text-fill:  #ffa801;
+}
+.login-btn{
+    -fx-background-color: #0652DD;
+    -fx-background-radius: 40px;
+    -fx-border-radius: 40px;
+}
+
+.login-btn:hover{
+    /*
+    -fx-background-color: #4bcffa;
+    -fx-background-radius: 40px;
+    -fx-border-radius: 40px;
+    -fx-text-fill:  #0652DD;*/
+    -fx-background-color: #EE5A24;
+}
+.signup-btn{
+    -fx-background-color: #d35400;
+    -fx-background-radius: 40px;
+    -fx-border-radius: 40px;
+}
+
+.signup-btn:hover{
+    -fx-background-color: #009432;
+    -fx-background-radius: 40px;
+    -fx-border-radius: 40px;
+    -fx-text-fill: white
+;
+}
+
+.forgotpassword-txt:hover{
+    -fx-background-color: red;
+}
+.admindashboard-btn{
+    -fx-background-color: #fed330;
+    -fx-border-radius: 40px;
+    -fx-background-radius: 40px;
+    -fx-border-color: 3px white;
+}
+
+.admindashboard-btn:hover{
+    -fx-background-color: #20bf6b;
+    -fx-background-radius: 40px;
+    -fx-border-radius: 40px;
+    -fx-border-color: 3px  #ffa801;
+    -fx-text-fill:  white;
+}
+.CrudOperation-Addbtn{
+    -fx-background-color: #fed330;
+    -fx-border-radius: 40px;
+    -fx-background-radius: 40px;
+    -fx-border-color: 3px#f7b731;
+}
+
+.CrudOperation-Addbtn:hover{
+    -fx-background-color: #32ff7e;
+    -fx-background-radius: 40px;
+    -fx-border-radius: 40px;
+    -fx-border-color: 3px  #ffa801;
+    -fx-text-fill: white;
+}
+.CrudOperation-UPDATEbtn{
+    -fx-background-color: #fed330;
+    -fx-border-radius: 40px;
+    -fx-background-radius: 40px;
+    -fx-border-color: 3px#f7b731;
+}
+
+.CrudOperation-UPDATEbtn:hover{
+    -fx-background-color: #3c40c6;
+    -fx-background-radius: 40px;
+    -fx-border-radius: 40px;
+    -fx-border-color: 3px  #ffa801;
+    -fx-text-fill: white;
+}
+
+.CrudOperation-DELETEbtn{
+    -fx-background-color: #fed330;
+    -fx-border-radius: 40px;
+    -fx-background-radius: 40px;
+    -fx-border-color: 3px#f7b731;
+}
+
+.CrudOperation-DELETEbtn:hover{
+    -fx-background-color: #ff3f34;
+    -fx-background-radius: 40px;
+    -fx-border-radius: 40px;
+    -fx-border-color: 3px  #ffa801;
+    -fx-text-fill: white;
+}
+
+.CrudOperation-SEARCHbtn{
+    -fx-background-color: #fed330;
+    -fx-border-radius: 40px;
+    -fx-background-radius: 40px;
+    -fx-border-color: 3px#f7b731;
+}
+
+.CrudOperation-SEARCHbtn:hover{
+    -fx-background-color: #0fbcf9;
+    -fx-background-radius: 40px;
+    -fx-border-radius: 40px;
+    -fx-border-color: 3px  #ffa801;
+    -fx-text-fill: white;
+}
+
+
+.CrudOperation-CLEARbtn{
+    -fx-background-color: #fed330;
+    -fx-border-radius: 40px;
+    -fx-background-radius: 40px;
+    -fx-border-color: 3px#f7b731;
+}
+
+.CrudOperation-CLEARbtn:hover{
+    -fx-background-color: #00d8d6;
+    -fx-background-radius: 40px;
+    -fx-border-radius: 40px;
+    -fx-border-color: 3px  #ffa801;
+    -fx-text-fill: white;
+}
+.CrudOperation-PRINTbtn{
+    -fx-background-color: #FFC312;
+    -fx-border-radius: 40px;
+    -fx-background-radius: 40px;
+    -fx-border-color: 3px#f7b731;
+    -fx-text-fill: black;
+}
+
+.CrudOperation-PRINTbtn:hover{
+    -fx-background-color: #009432;
+    -fx-background-radius: 40px;
+    -fx-border-radius: 40px;
+    -fx-border-color: 3px  #ffa801;
+    -fx-text-fill: white;
+}
+.CrudOperation-VIEWbtn{
+    -fx-background-color: #FFC312;
+    -fx-border-radius: 40px;
+    -fx-background-radius: 40px;
+    -fx-border-color: 3px#f7b731;
+    -fx-text-fill: black;
+}
+
+.CrudOperation-VIEWbtn:hover{
+    -fx-background-color: #0652DD;
+    -fx-background-radius: 40px;
+    -fx-border-radius: 40px;
+    -fx-border-color: 3px  #ffa801;
+    -fx-text-fill: white;
+}
+.CrudOperation-SELLINGbtn{
+    -fx-background-color: #FFC312;
+    -fx-border-radius: 40px;
+    -fx-background-radius: 40px;
+    -fx-border-color: 3px#f7b731;
+    -fx-text-fill: black;
+}
+
+.CrudOperation-SELLINGbtn:hover{
+    -fx-background-color: #1B1464;
+    -fx-background-radius: 40px;
+    -fx-border-radius: 40px;
+    -fx-border-color: 3px  #ffa801;
+    -fx-text-fill: white;
+}
+.CrudOperation-VIEWbtn{
+    -fx-background-color: #fed330;
+    -fx-border-radius: 40px;
+    -fx-background-radius: 40px;
+    -fx-border-color: 3px#f7b731;
+}
+
+.CrudOperation-VIEWbtn:hover{
+    -fx-background-color: #20bf6b;
+    -fx-background-radius: 40px;
+    -fx-border-radius: 40px;
+    -fx-border-color: 3px  #ffa801;
+    -fx-text-fill: white;
+}
+.PlaceOrder-REMOVEbtn{
+    -fx-background-color: #FFC312;
+    -fx-border-radius: 40px;
+    -fx-background-radius: 40px;
+    -fx-border-color: 3px#f7b731;
+    -fx-text-fill: black
+
+;
+}
+
+.PlaceOrder-REMOVEbtn:hover{
+    -fx-background-color: #EA2027;
+    -fx-background-radius: 40px;
+    -fx-border-radius: 40px;
+    -fx-border-color: 3px  #ffa801;
+    -fx-text-fill: white;
+}
+.PlaceOrder-ADDTOCARTbtn{
+    -fx-background-color: #FFC312;
+    -fx-border-radius: 40px;
+    -fx-background-radius: 40px;
+    -fx-border-color: 3px#f7b731;
+    -fx-text-fill: black
+
+;
+}
+
+.PlaceOrder-ADDTOCARTbtn:hover{
+    -fx-background-color: #0097e6;
+    -fx-background-radius: 40px;
+    -fx-border-radius: 40px;
+    -fx-border-color: 3px  #ffa801;
+    -fx-text-fill: white;
+}
+
+.PlaceOrder-PLACEORDERbtn{
+    -fx-background-color: #FFC312;
+    -fx-border-radius: 40px;
+    -fx-background-radius: 40px;
+    -fx-border-color: 3px#f7b731;
+    -fx-text-fill: black
+
+;
+}
+
+.PlaceOrder-PLACEORDERbtn:hover{
+    -fx-background-color: #ff793f;
+    -fx-background-radius: 40px;
+    -fx-border-radius: 40px;
+    -fx-border-color: 3px  #ffa801;
+    -fx-text-fill: white;
+}
+.ManageRecipe-VIEWRECIPEbtn{
+    -fx-background-color: #FFC312;
+    -fx-border-radius: 40px;
+    -fx-background-radius: 40px;
+    -fx-border-color: 3px#f7b731;
+    -fx-text-fill: black
+
+;
+}
+
+.ManageRecipe-VIEWRECIPEbtn:hover{
+    -fx-background-color: #009432;
+    -fx-background-radius: 40px;
+    -fx-border-radius: 40px;
+    -fx-border-color: 3px  #ffa801;
+    -fx-text-fill: white;
+}

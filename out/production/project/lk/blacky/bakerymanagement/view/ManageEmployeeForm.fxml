@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="pane" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.blacky.bakerymanagement.controller.ManageEmployeeFormController">
+   <children>
+      <ImageView fitHeight="1000.0" fitWidth="1920.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/welcome.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane opacity="0.91" prefHeight="1000.0" prefWidth="1920.0" style="-fx-background-color: black;">
+         <children>
+            <ImageView fitHeight="169.0" fitWidth="175.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/logo.png" />
+               </image>
+            </ImageView>
+            <AnchorPane layoutX="157.0" layoutY="152.0" prefHeight="839.0" prefWidth="1365.0" style="-fx-background-color: white;">
+               <children>
+                  <ImageView fitHeight="84.0" fitWidth="87.0" onMouseClicked="#backImgClickOnAction" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/back.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <JFXTextField fx:id="txtName" layoutX="84.0" layoutY="129.0" prefHeight="74.0" prefWidth="1027.0" promptText="Name" style="-fx-background-color: white;">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXTextField fx:id="txtSalary" layoutX="71.0" layoutY="420.0" prefHeight="74.0" prefWidth="1027.0" promptText="Salary" style="-fx-background-color: white;">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXTextField fx:id="txtEmpId" layoutX="84.0" layoutY="35.0" prefHeight="74.0" prefWidth="1027.0" promptText="Employee -ID" style="-fx-background-color: white;">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXTextField fx:id="txtTpNo" layoutX="71.0" layoutY="503.0" prefHeight="74.0" prefWidth="1027.0" promptText="T.P-No" style="-fx-background-color: white;">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXTextField fx:id="txtEmail" layoutX="71.0" layoutY="587.0" prefHeight="74.0" prefWidth="1027.0" promptText="E-Mail" style="-fx-background-color: white;">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXButton layoutX="31.0" layoutY="767.0" onAction="#btnAddEmployeeOnAction" prefHeight="43.0" prefWidth="175.0" styleClass="CrudOperation-Addbtn" stylesheets="@../style.css" text="Add">
+                     <font>
+                        <Font name="System Bold" size="23.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton layoutX="257.0" layoutY="768.0" onAction="#btnUpdateEmployeeOnAction" prefHeight="43.0" prefWidth="175.0" styleClass="CrudOperation-UPDATEbtn" stylesheets="@../style.css" text="Update">
+                     <font>
+                        <Font name="System Bold" size="23.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <ImageView fitHeight="43.0" fitWidth="70.0" layoutX="31.0" layoutY="771.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/add.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="37.0" fitWidth="37.0" layoutX="269.0" layoutY="775.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/update.png" />
+                     </image>
+                  </ImageView>
+                  <JFXButton layoutX="484.0" layoutY="768.0" onAction="#btnDeleteEmployeeOnAction" prefHeight="43.0" prefWidth="175.0" styleClass="CrudOperation-DELETEbtn" stylesheets="@../style.css" text="Delete">
+                     <font>
+                        <Font name="System Bold" size="23.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <ImageView fitHeight="43.0" fitWidth="70.0" layoutX="496.0" layoutY="772.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/delete.png" />
+                     </image>
+                  </ImageView>
+                  <JFXButton layoutX="721.0" layoutY="769.0" onAction="#btnSearchOnAction" prefHeight="43.0" prefWidth="175.0" styleClass="CrudOperation-SEARCHbtn" stylesheets="@../style.css" text="Search">
+                     <font>
+                        <Font name="System Bold" size="23.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <ImageView fitHeight="31.0" fitWidth="43.0" layoutX="732.0" layoutY="779.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/search.png" />
+                     </image>
+                  </ImageView>
+                  <JFXButton layoutX="945.0" layoutY="767.0" onAction="#btnClearOnAction" prefHeight="43.0" prefWidth="175.0" styleClass="CrudOperation-CLEARbtn" stylesheets="@../style.css" text="Clear">
+                     <font>
+                        <Font name="System Bold" size="23.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <ImageView fitHeight="31.0" fitWidth="37.0" layoutX="970.0" layoutY="778.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/clear.png" />
+                     </image>
+                  </ImageView>
+                  <JFXTextField fx:id="txtGender" layoutX="84.0" layoutY="237.0" prefHeight="74.0" prefWidth="1027.0" promptText="Gender" style="-fx-background-color: white;">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXTextField fx:id="txtDivision" layoutX="84.0" layoutY="337.0" prefHeight="74.0" prefWidth="1027.0" promptText="Devision" style="-fx-background-color: white;">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXTextField fx:id="txtDateOfBirth" layoutX="71.0" layoutY="679.0" prefHeight="74.0" prefWidth="1027.0" promptText="Date Of  Birth" style="-fx-background-color: white;">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXButton layoutX="1162.0" layoutY="767.0" onAction="#btnEmployeeViewOnAction" prefHeight="50.0" prefWidth="195.0" styleClass="CrudOperation-VIEWbtn" stylesheets="@../style.css" text="View">
+                     <font>
+                        <Font name="System Bold" size="23.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <ImageView fitHeight="43.0" fitWidth="36.0" layoutX="1176.0" layoutY="774.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/view.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <Label layoutX="436.0" layoutY="15.0" text="Manage Employee." textFill="#d35400">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="96.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="pane" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.blacky.bakerymanagement.controller.ViewAnnuallyIncomeReportFormController">
+   <children>
+      <ImageView fitHeight="1000.0" fitWidth="1920.0" pickOnBounds="true">
+         <image>
+            <Image url="@../assets/welcome.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane opacity="0.92" prefHeight="1000.0" prefWidth="1920.0" style="-fx-background-color: black;">
+         <children>
+            <ImageView fitHeight="210.0" fitWidth="224.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/logo.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="237.0" layoutY="64.0" text="View Annually  Income Reports" textFill="#d35400">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="82.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="130.0" layoutY="196.0" prefHeight="723.0" prefWidth="1406.0" style="-fx-background-color: white;">
+         <children>
+            <ImageView fitHeight="84.0" fitWidth="99.0" layoutX="14.0" onMouseClicked="#backImgOnClickAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/back.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <TableView layoutX="115.0" layoutY="74.0" prefHeight="488.0" prefWidth="1223.0" style="-fx-background-color: #dcdde1;">
+               <columns>
+                  <TableColumn prefWidth="157.00003051757812" text="Order_id" />
+                  <TableColumn prefWidth="166.99996948242188" text="Cust_id" />
+                  <TableColumn prefWidth="210.0" text="Product_id" />
+                  <TableColumn minWidth="0.0" prefWidth="160.0" text="Qty" />
+                  <TableColumn prefWidth="375.0" text="Income" />
+               </columns>
+            </TableView>
+            <JFXButton layoutX="1077.0" layoutY="638.0" styleClass="CrudOperation-PRINTbtn" stylesheets="@../style.css" text="Print  Monthly Income Report " textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="106.0" layoutY="638.0" onAction="#btnProductSalesOnAction" prefHeight="31.0" prefWidth="319.0" styleClass="CrudOperation-VIEWbtn" stylesheets="@../style.css" text="Product Sales" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="603.0" layoutY="638.0" onAction="#btnSalesDetails" prefHeight="31.0" prefWidth="319.0" styleClass="CrudOperation-SELLINGbtn" stylesheets="@../style.css" text="Sales Details" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

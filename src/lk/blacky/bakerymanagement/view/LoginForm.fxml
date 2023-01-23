@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="pane" prefHeight="988.0" prefWidth="1646.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.blacky.bakerymanagement.controller.LoginFormController">
+   <children>
+      <ImageView fitHeight="1010.0" fitWidth="1646.0" pickOnBounds="true">
+         <image>
+            <Image url="@../assets/welcome.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="813.0" fitWidth="895.0" layoutX="435.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/logo.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="-4.0" opacity="0.91" prefHeight="1012.0" prefWidth="1650.0" style="-fx-background-color: black;">
+         <children>
+            <AnchorPane layoutX="83.0" layoutY="468.0" prefHeight="384.0" prefWidth="393.0" style="-fx-background-color: white;">
+               <children>
+                  <ImageView fitHeight="385.0" fitWidth="408.0" layoutX="-2.0" layoutY="-3.0" onMouseClicked="#adminImgOnClickAction" pickOnBounds="true">
+                     <image>
+                        <Image url="@../assets/software-engineer.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="557.0" layoutY="451.0" prefHeight="370.0" prefWidth="426.0" style="-fx-background-color: white;">
+               <children>
+                  <ImageView fitHeight="427.0" fitWidth="470.0" layoutX="-4.0" layoutY="-2.0" onMouseClicked="#cashierImgClickOnAction" pickOnBounds="true">
+                     <image>
+                        <Image url="@../assets/cashier%20girl.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="1115.0" layoutY="456.0" prefHeight="402.0" prefWidth="450.0" style="-fx-background-color: white;">
+               <children>
+                  <ImageView fitHeight="421.0" fitWidth="457.0" layoutX="-7.0" layoutY="-2.0" onMouseClicked="#cheifcookImgClickOnAction" pickOnBounds="true">
+                     <image>
+                        <Image url="@../assets/chef.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <Label layoutX="168.0" layoutY="311.0" style="-fx-background-radius: 20;" text="Select Once To Continue...." textFill="#d35400">
+               <font>
+                  <Font name="Leelawadee UI" size="78.0" />
+               </font>
+            </Label>
+            <Label layoutX="379.0" layoutY="70.0" prefHeight="111.0" prefWidth="849.0" style="-fx-background-radius: 20;" text="Sooriya Bakers" textFill="#d35400">
+               <font>
+                  <Font name="Century Schoolbook" size="100.0" />
+               </font>
+            </Label>
+            <Label layoutX="882.0" layoutY="206.0" text="Daily Fresh And Tasty" textFill="WHITE">
+               <font>
+                  <Font name="Colonna MT" size="44.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="167.0" fitWidth="388.0" layoutX="46.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/logo.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="194.0" layoutY="892.0" text="Admin" textFill="#ff6213">
+               <font>
+                  <Font name="Bauhaus 93" size="66.0" />
+               </font>
+            </Label>
+            <Label layoutX="678.0" layoutY="885.0" text="Cashier" textFill="#ff6213">
+               <font>
+                  <Font name="Bauhaus 93" size="66.0" />
+               </font>
+            </Label>
+            <Label layoutX="1180.0" layoutY="902.0" text="Cheif Cook" textFill="#ff6213">
+               <font>
+                  <Font name="Bauhaus 93" size="66.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

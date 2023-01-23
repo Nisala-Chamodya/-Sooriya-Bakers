@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="pane" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.blacky.bakerymanagement.controller.ViewMonthlyProductSellingFormController">
+   <children>
+      <ImageView fitHeight="1000.0" fitWidth="1920.0" layoutY="6.0" pickOnBounds="true">
+         <image>
+            <Image url="@../assets/welcome.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane opacity="0.92" prefHeight="1006.0" prefWidth="1920.0" style="-fx-background-color: black;">
+         <children>
+            <ImageView fitHeight="230.0" fitWidth="207.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/logo.png" />
+               </image>
+            </ImageView>
+            <AnchorPane layoutX="171.0" layoutY="183.0" prefHeight="722.0" prefWidth="1350.0" style="-fx-background-color: white;">
+               <children>
+                  <PieChart fx:id="piechartPastry" layoutX="163.0" layoutY="68.0" prefHeight="675.0" prefWidth="1009.0" title="Product Item Sales" />
+                  <ImageView fitHeight="72.0" fitWidth="101.0" layoutX="4.0" layoutY="6.0" onMouseClicked="#backImgOnClickAction" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/back.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <Label layoutX="368.0" layoutY="24.0" text="Monthly Product Sales Details" textFill="#d35400">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="76.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

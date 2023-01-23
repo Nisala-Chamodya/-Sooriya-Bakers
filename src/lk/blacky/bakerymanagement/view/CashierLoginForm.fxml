@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="pane" prefHeight="988.0" prefWidth="1646.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.blacky.bakerymanagement.controller.CashierLoginFormController">
+   <children>
+      <ImageView fitHeight="994.0" fitWidth="1646.0" pickOnBounds="true">
+         <image>
+            <Image url="@../assets/welcome.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutY="-24.0" opacity="0.9" prefHeight="1024.0" prefWidth="1646.0" style="-fx-background-color: black;">
+         <children>
+            <ImageView fitHeight="195.0" fitWidth="188.0" layoutX="7.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/logo.png" />
+               </image>
+            </ImageView>
+            <AnchorPane layoutX="242.0" layoutY="277.0" prefHeight="622.0" prefWidth="563.0" style="-fx-background-color: white;">
+               <children>
+                  <ImageView fitHeight="354.0" fitWidth="563.0" layoutY="78.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../assets/cashier%20bg.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="66.0" fitWidth="75.0" layoutX="4.0" layoutY="7.0" onMouseClicked="#backImgOnClickAction" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/back.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fitHeight="33.0" fitWidth="36.0" layoutX="170.0" layoutY="431.0" onMouseClicked="#fbImgOnClickAction" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/facebook.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fitHeight="33.0" fitWidth="36.0" layoutX="262.0" layoutY="431.0" onMouseClicked="#insterImgOnClickAction" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/instagram.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fitHeight="33.0" fitWidth="36.0" layoutX="215.0" layoutY="431.0" onMouseClicked="#whatsappImgOnClicAction" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/whatsapp.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="805.0" layoutY="277.0" prefHeight="622.0" prefWidth="606.0" style="-fx-background-color: #ffa502;">
+               <children>
+                  <Label layoutX="14.0" layoutY="26.0" text="WELCOME !" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="68.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="55.0" fitWidth="56.0" layoutX="14.0" layoutY="195.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/cashier.png" />
+                     </image>
+                  </ImageView>
+                  <JFXTextField fx:id="txtUserName" layoutX="102.0" layoutY="188.0" prefHeight="55.0" prefWidth="480.0" promptText="User Name" style="-fx-background-color: WHITE; -fx-background-radius: 20;" unFocusColor="WHITE">
+                     <font>
+                        <Font size="32.0" />
+                     </font>
+                  </JFXTextField>
+                  <ImageView fitHeight="55.0" fitWidth="56.0" layoutX="15.0" layoutY="286.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/password.png" />
+                     </image>
+                  </ImageView>
+                  <JFXPasswordField fx:id="txtPassword" layoutX="98.0" layoutY="279.0" prefHeight="69.0" prefWidth="480.0" promptText="Password" style="-fx-background-color: white; -fx-background-radius: 20;">
+                     <font>
+                        <Font size="32.0" />
+                     </font>
+                  </JFXPasswordField>
+                  <Label layoutX="153.0" layoutY="522.0" onMouseClicked="#txtForgotPasswordOnAction" styleClass="forgotpassword-txt" stylesheets="@../style.css" text="Forgot Password?" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="29.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+                  <JFXButton layoutX="184.0" layoutY="414.0" onAction="#btnLoginOnAction" styleClass="login-btn" stylesheets="@../style.css" text="Login" textFill="WHITE">
+                     <font>
+                        <Font size="45.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <Label layoutX="34.0" layoutY="566.0" text="Don't have an account yet?" textFill="WHITE">
+                     <font>
+                        <Font size="28.0" />
+                     </font>
+                  </Label>
+                  <JFXButton layoutX="432.0" layoutY="563.0" onAction="#signupBtnOnClickAction" styleClass="signup-btn" stylesheets="@../style.css" text="Sign Up" textFill="WHITE">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <Label fx:id="lblError" layoutX="69.0" layoutY="364.0" prefHeight="23.0" prefWidth="553.0" text="Error Masage" textFill="RED">
+                     <font>
+                        <Font name="Baskerville Old Face" size="31.0" />
+                     </font>
+                  </Label>
+               </children></AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

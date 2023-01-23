@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="pane" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.blacky.bakerymanagement.controller.ViewRecipeFormController">
+   <children>
+      <ImageView fitHeight="1000.0" fitWidth="1920.0" pickOnBounds="true">
+         <image>
+            <Image url="@../assets/welcome.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="-14.0" opacity="0.92" prefHeight="1000.0" prefWidth="1938.0" style="-fx-background-color: black;">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="163.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/logo.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="559.0" layoutY="26.0" text="View Recipe" textFill="#d35400">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="96.0" />
+               </font>
+            </Label>
+            <AnchorPane layoutX="12.0" layoutY="176.0" prefHeight="797.0" prefWidth="1779.0" style="-fx-background-color: white;">
+               <children>
+                  <ImageView fitHeight="79.0" fitWidth="108.0" onMouseClicked="#backImgOnClickAction" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/back.png" />
+                     </image>
+                  </ImageView>
+                  <TableView fx:id="tblRecipe" layoutX="57.0" layoutY="139.0" prefHeight="560.0" prefWidth="1420.0">
+                    <columns>
+                      <TableColumn fx:id="colRecipeId" prefWidth="197.0" text="Recipe Id" />
+                      <TableColumn fx:id="colName" prefWidth="215.0" text="Name" />
+                        <TableColumn fx:id="colDescription" prefWidth="324.0" text="Description" />
+                        <TableColumn fx:id="colOption" prefWidth="297.0" text="Option" />
+                    </columns>
+                  </TableView>
+                  <JFXTextField fx:id="txtSearch" layoutX="215.0" layoutY="91.0" prefHeight="31.0" prefWidth="1254.0" promptText="search Recipe Here!" />
+                  <JFXTextField fx:id="txtChiefCookName" layoutX="1295.0" layoutY="32.0" prefHeight="31.0" prefWidth="182.0" promptText="CheifCook  Name" />
+                  <JFXButton layoutX="1396.0" layoutY="752.0" onAction="#btnPrintResipeOnAction" styleClass="CrudOperation-PRINTbtn" stylesheets="@../style.css" text="Print Resipe" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

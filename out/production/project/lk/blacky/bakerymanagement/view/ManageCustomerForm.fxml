@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="pane" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.blacky.bakerymanagement.controller.ManageCustomerFormController">
+   <children>
+      <ImageView fitHeight="1000.0" fitWidth="1920.0" pickOnBounds="true">
+         <image>
+            <Image url="@../assets/welcome.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane opacity="0.92" prefHeight="1000.0" prefWidth="1920.0" style="-fx-background-color: black;">
+         <children>
+            <ImageView fitHeight="215.0" fitWidth="215.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/logo.png" />
+               </image>
+            </ImageView>
+            <AnchorPane layoutX="134.0" layoutY="213.0" prefHeight="716.0" prefWidth="1356.0" style="-fx-background-color: white;">
+               <children>
+                  <ImageView fitHeight="61.0" fitWidth="100.0" onMouseClicked="#backImgOnClickAction" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/back.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <JFXTextField fx:id="txtCustId" layoutX="123.0" layoutY="77.0" prefHeight="87.0" prefWidth="988.0" promptText="Customer-ID" style="-fx-background-color: white;">
+                     <font>
+                        <Font size="33.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXTextField fx:id="txtName" layoutX="123.0" layoutY="188.0" prefHeight="87.0" prefWidth="988.0" promptText="Name" style="-fx-background-color: white;">
+                     <font>
+                        <Font size="33.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXTextField fx:id="txtNic" layoutX="116.0" layoutY="315.0" prefHeight="87.0" prefWidth="988.0" promptText="N.I.C." style="-fx-background-color: white;">
+                     <font>
+                        <Font size="33.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXTextField fx:id="txtAddress" layoutX="116.0" layoutY="407.0" prefHeight="87.0" prefWidth="988.0" promptText="Address" style="-fx-background-color: white;">
+                     <font>
+                        <Font size="33.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXTextField fx:id="txtTpNo" layoutX="116.0" layoutY="519.0" prefHeight="87.0" prefWidth="988.0" promptText="T.P. NO" style="-fx-background-color: white;">
+                     <font>
+                        <Font size="33.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXButton layoutX="58.0" layoutY="642.0" onAction="#btnAddCustomerOnAction" prefHeight="43.0" prefWidth="175.0" styleClass="CrudOperation-Addbtn" stylesheets="@../style.css" text="Add">
+                     <font>
+                        <Font name="System Bold" size="23.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <ImageView fitHeight="43.0" fitWidth="70.0" layoutX="61.0" layoutY="646.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/add.png" />
+                     </image>
+                  </ImageView>
+                  <JFXButton layoutX="279.0" layoutY="643.0" onAction="#btnUpdateCustomerOnAction" prefHeight="43.0" prefWidth="175.0" styleClass="CrudOperation-UPDATEbtn" stylesheets="@../style.css" text="Update">
+                     <font>
+                        <Font name="System Bold" size="23.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <ImageView fitHeight="43.0" fitWidth="70.0" layoutX="279.0" layoutY="647.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/update.png" />
+                     </image>
+                  </ImageView>
+                  <JFXButton layoutX="503.0" layoutY="642.0" onAction="#btnCustomerDeleteOnAction" prefHeight="43.0" prefWidth="175.0" styleClass="CrudOperation-DELETEbtn" stylesheets="@../style.css" text="Delete">
+                     <font>
+                        <Font name="System Bold" size="23.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <ImageView fitHeight="43.0" fitWidth="70.0" layoutX="503.0" layoutY="646.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/delete.png" />
+                     </image>
+                  </ImageView>
+                  <JFXButton layoutX="720.0" layoutY="642.0" onAction="#btnSearchCustomerOnAction" prefHeight="43.0" prefWidth="175.0" styleClass="CrudOperation-SEARCHbtn" stylesheets="@../style.css" text="Search">
+                     <font>
+                        <Font name="System Bold" size="23.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <ImageView fitHeight="43.0" fitWidth="70.0" layoutX="732.0" layoutY="646.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/search.png" />
+                     </image>
+                  </ImageView>
+                  <JFXButton layoutX="929.0" layoutY="644.0" onAction="#btnClearOnAction" prefHeight="43.0" prefWidth="175.0" styleClass="CrudOperation-CLEARbtn" stylesheets="@../style.css" text="Clear">
+                     <font>
+                        <Font name="System Bold" size="23.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <ImageView fitHeight="43.0" fitWidth="70.0" layoutX="929.0" layoutY="648.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/clear.png" />
+                     </image>
+                  </ImageView>
+                  <JFXButton layoutX="1135.0" layoutY="645.0" onAction="#btnCustomerViewOnAction" prefHeight="50.0" prefWidth="195.0" styleClass="CrudOperation-VIEWbtn" stylesheets="@../style.css" text="View">
+                     <font>
+                        <Font name="System Bold" size="23.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <ImageView fitHeight="43.0" fitWidth="36.0" layoutX="1146.0" layoutY="652.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/view.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <Label layoutX="318.0" layoutY="62.0" text="Manage Customer." textFill="#d35400">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="96.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

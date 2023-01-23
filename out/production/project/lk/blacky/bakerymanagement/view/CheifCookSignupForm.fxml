@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="pane" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.blacky.bakerymanagement.controller.CheifCookSignupFormController">
+   <children>
+      <ImageView fitHeight="1000.0" fitWidth="1920.0" pickOnBounds="true">
+         <image>
+            <Image url="@../assets/welcome.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane opacity="0.92" prefHeight="1000.0" prefWidth="1920.0" style="-fx-background-color: black;">
+         <children>
+            <ImageView fitHeight="243.0" fitWidth="199.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/logo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="170.0" layoutY="210.0" prefHeight="641.0" prefWidth="629.0" style="-fx-background-color: white;">
+         <children>
+            <ImageView fitHeight="72.0" fitWidth="83.0" onMouseClicked="#backImgOnClickAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/back.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <Label layoutX="263.0" layoutY="49.0" text="SIGN UP">
+               <font>
+                  <Font name="System Bold" size="31.0" />
+               </font>
+            </Label>
+            <JFXButton layoutX="263.0" layoutY="411.0" onAction="#btnCheifCookSignUpOnAction" styleClass="signup-btn" stylesheets="@../style.css" text="SIGN UP">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <Separator layoutX="36.0" layoutY="479.0" prefHeight="2.0" prefWidth="578.0" />
+            <Label layoutX="187.0" layoutY="489.0" text="Sign up with google or facebook">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="53.0" fitWidth="62.0" layoutX="249.0" layoutY="561.0" onMouseClicked="#fbImgOnClickAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/facebook.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fitHeight="53.0" fitWidth="62.0" layoutX="334.0" layoutY="561.0" onMouseClicked="#googleImgOnClickAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/google.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <JFXTextField fx:id="txtUserName" layoutX="61.0" layoutY="119.0" prefHeight="31.0" prefWidth="528.0" promptText="User Name">
+               <font>
+                  <Font name="System Bold" size="29.0" />
+               </font>
+            </JFXTextField>
+            <JFXPasswordField fx:id="txtPassword" layoutX="58.0" layoutY="213.0" prefHeight="63.0" prefWidth="536.0" promptText="Password">
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </JFXPasswordField>
+            <JFXPasswordField fx:id="txtConfirmPassword" layoutX="58.0" layoutY="321.0" prefHeight="63.0" prefWidth="536.0" promptText="Confirm Password">
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </JFXPasswordField>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="799.0" layoutY="210.0" prefHeight="641.0" prefWidth="636.0" style="-fx-background-color: #e67e22;">
+         <children>
+            <ImageView fitHeight="292.0" fitWidth="307.0" layoutX="184.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/logo.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="219.0" layoutY="269.0" text="Sooriya Bakers">
+               <font>
+                  <Font name="Palatino Linotype Bold" size="35.0" />
+               </font>
+            </Label>
+            <Separator layoutX="96.0" layoutY="333.0" prefHeight="13.0" prefWidth="486.0" />
+            <JFXTextArea layoutX="85.0" layoutY="346.0" prefHeight="229.0" prefWidth="528.0" text="Dine with us and kickstart your day with a good cup of coffee. We offer a few yet expertly made coffee and lattes. Pair it with our delicious choices of pastries, cakes, omelette, or breakfast meals and you’re in for a good day ahead!" unFocusColor="#fffdfd">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </JFXTextArea>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
