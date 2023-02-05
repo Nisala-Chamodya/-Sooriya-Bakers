@@ -1,13 +1,22 @@
 package lk.blacky.bakerymanagement.dao;
 
+import lk.blacky.bakerymanagement.db.DBConnection;
 import lk.blacky.bakerymanagement.to.Customer;
 import lk.blacky.bakerymanagement.to.Customer;
 import lk.blacky.bakerymanagement.util.CRUDUtil;
+import lk.blacky.bakerymanagement.view.tm.CustomerTm;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
-public class CustomerDAOImpl {
+//customer dao
+public class  CustomerDAOImpl {
+
+    public CustomerDAOImpl(String text) {
+    }
 
     public static boolean AddCustomer(Customer customer) throws SQLException, ClassNotFoundException {
         String sql = "INSERT INTO Customer VALUES (?, ?, ?, ?,?)";
@@ -30,10 +39,7 @@ public class CustomerDAOImpl {
                     resultSet.getString(2),
                     resultSet.getString(3),
                     resultSet.getString(4),
-                    resultSet.getString(5) );
-
-
-
+                    resultSet.getString(5));
 
 
         }
@@ -44,4 +50,8 @@ public class CustomerDAOImpl {
         String sql = "DELETE FROM customer WHERE cust_id=? ";
         return CRUDUtil.execute(sql, custId);
     }
+
+
+
+
 }

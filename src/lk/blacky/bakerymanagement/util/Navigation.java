@@ -191,6 +191,8 @@ public class Navigation {
                 window.setTitle("Cheif Cook View Supplier Form ");
                 initUI("CheifCookViewSupplierForm.fxml");
                 break;
+            default:
+                System.out.println("Invalid UI");
 
 
 

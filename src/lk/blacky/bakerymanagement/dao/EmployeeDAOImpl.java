@@ -1,13 +1,12 @@
-package lk.blacky.bakerymanagement.model;
+package lk.blacky.bakerymanagement.dao;
 
-import lk.blacky.bakerymanagement.to.Customer;
 import lk.blacky.bakerymanagement.to.Employee;
 import lk.blacky.bakerymanagement.util.CRUDUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class EmployeeModel {
+public class EmployeeDAOImpl {
     public static boolean addEmployee(Employee employee) throws SQLException, ClassNotFoundException {
         String sql = "INSERT INTO employee VALUES (?, ?, ?, ?,?,?,?,?)";
         return CRUDUtil.execute(sql, employee.getEmpId(), employee.getName(), employee.getGender(),

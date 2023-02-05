@@ -7,6 +7,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import lk.blacky.bakerymanagement.dao.CustomerDAOImpl;
 import lk.blacky.bakerymanagement.db.DBConnection;
 import lk.blacky.bakerymanagement.util.Navigation;
 import lk.blacky.bakerymanagement.util.Routes;
@@ -17,6 +18,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Optional;
 
 public class AdminCustomerViewFormController {
@@ -67,6 +69,8 @@ public class AdminCustomerViewFormController {
             statement.setObject(1,searchText);
             statement.setObject(2,searchText);
             ResultSet set = statement.executeQuery();
+
+
 
             while (set.next()){
 

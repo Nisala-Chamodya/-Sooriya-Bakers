@@ -5,7 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import lk.blacky.bakerymanagement.model.ProductModel;
+import lk.blacky.bakerymanagement.dao.ProductDAOImpl;
 import lk.blacky.bakerymanagement.to.Product;
 import lk.blacky.bakerymanagement.util.Navigation;
 import lk.blacky.bakerymanagement.util.Routes;
@@ -52,7 +52,7 @@ public class ManageProductFormController {
 
         Product product = new Product(productId,productName,price,description,availability);
         try {
-            boolean isAdded=ProductModel.AddProduct(product);
+            boolean isAdded= ProductDAOImpl.AddProduct(product);
             if (isAdded){
                 new Alert(Alert.AlertType.CONFIRMATION, "Product Added!").show();
             }else {
@@ -105,7 +105,7 @@ public class ManageProductFormController {
 
     public void btnProductSearchOnAction(ActionEvent actionEvent) {
         try {
-            Product product= ProductModel.searchProduct(txtProductId.getText());
+            Product product= ProductDAOImpl.searchProduct(txtProductId.getText());
             if (product==null){
                 new Alert(Alert.AlertType.INFORMATION,"Product Not Found").show();
             }else {
@@ -139,7 +139,7 @@ public class ManageProductFormController {
 
         Product product = new Product(productId,productName,price,description,availability);
         try {
-            boolean isUpdated=  ProductModel.updateProduct(product);
+            boolean isUpdated=  ProductDAOImpl.updateProduct(product);
             if (isUpdated){
                 new Alert(Alert.AlertType.INFORMATION,"Product Updated Sucessfully").show();
             }else {
@@ -198,7 +198,7 @@ public class ManageProductFormController {
 
     public void btnDeleteProductOnAction(ActionEvent actionEvent) {
         try {
-            boolean isDeleted=   ProductModel.deleteProduct(txtProductId.getText());
+            boolean isDeleted=   ProductDAOImpl.deleteProduct(txtProductId.getText());
             if (isDeleted){
                 new Alert(Alert.AlertType.INFORMATION,"Product  Deleted Successfully!").show();
 

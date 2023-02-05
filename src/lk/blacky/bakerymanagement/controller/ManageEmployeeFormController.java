@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import lk.blacky.bakerymanagement.dao.EmployeeDAOImpl;
 import lk.blacky.bakerymanagement.model.EmployeeModel;
 import lk.blacky.bakerymanagement.to.Employee;
 import lk.blacky.bakerymanagement.util.Navigation;
@@ -58,7 +59,7 @@ public class ManageEmployeeFormController {
         Employee employee = new Employee(empId,name,gender,division,salary,tpNo,email,date);
 
         try {
-            boolean isAdded = EmployeeModel.addEmployee(employee);
+            boolean isAdded = EmployeeDAOImpl.addEmployee(employee);
             if (isAdded){
 
                 new Alert(Alert.AlertType.CONFIRMATION, "Employee Added!").show();
@@ -130,7 +131,7 @@ public class ManageEmployeeFormController {
 
     public void btnSearchOnAction(ActionEvent actionEvent) {
         try {
-            Employee employee= EmployeeModel.searchEmployee(txtEmpId.getText());
+            Employee employee= EmployeeDAOImpl.searchEmployee(txtEmpId.getText());
 
             if (employee==null){
                 new Alert(Alert.AlertType.INFORMATION,"Employee Not Found").show();
@@ -190,7 +191,7 @@ public class ManageEmployeeFormController {
         Employee employee = new Employee(empId,name,gender,division,salary,tpNo,email,date);
 
         try {
-            boolean isAdded = EmployeeModel.updateEmployee(employee);
+            boolean isAdded = EmployeeDAOImpl.updateEmployee(employee);
             if (isAdded){
 
                 new Alert(Alert.AlertType.CONFIRMATION, "Employee Updated!").show();
@@ -253,7 +254,7 @@ public class ManageEmployeeFormController {
 
 
         try {
-            boolean isDeleted=   EmployeeModel.deleteEmployee(txtEmpId.getText());
+            boolean isDeleted=   EmployeeDAOImpl.deleteEmployee(txtEmpId.getText());
             if (isDeleted){
                 new Alert(Alert.AlertType.INFORMATION,"Employee  Deleted Successfully!").show();
 

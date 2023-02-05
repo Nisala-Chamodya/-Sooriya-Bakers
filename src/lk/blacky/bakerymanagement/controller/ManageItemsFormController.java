@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import lk.blacky.bakerymanagement.dao.ItemDAOImpl;
 import lk.blacky.bakerymanagement.model.ItemModel;
 import lk.blacky.bakerymanagement.to.Item;
 import lk.blacky.bakerymanagement.util.Navigation;
@@ -41,7 +42,7 @@ public class ManageItemsFormController {
             Item item = new Item(itemId, brand, description, availability);
 
             try {
-                boolean isAdded = ItemModel.AddItem(item);
+                boolean isAdded = ItemDAOImpl.AddItem(item);
                 if (isAdded) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Item Added!").show();
                 } else {
@@ -79,7 +80,7 @@ public class ManageItemsFormController {
 
     public void btnSearchItemOnAction(ActionEvent actionEvent) {
         try {
-            Item item= ItemModel.searchItem(txtItemId.getText());
+            Item item= ItemDAOImpl.searchItem(txtItemId.getText());
             if (item==null){
                 new Alert(Alert.AlertType.INFORMATION,"Item Not Found").show();
             }else {
@@ -111,7 +112,7 @@ public class ManageItemsFormController {
 
         Item item = new Item(itemId,brand,description,availability);
         try {
-            boolean isUpdated=  ItemModel.updateItem(item);
+            boolean isUpdated=  ItemDAOImpl.updateItem(item);
             if (isUpdated){
                 new Alert(Alert.AlertType.INFORMATION,"Item Updated Successfully").show();
             }else {
@@ -146,7 +147,7 @@ public class ManageItemsFormController {
     public void btnDeleteItemOnAction(ActionEvent actionEvent) {
 
         try {
-            boolean isDeleted=   ItemModel.deleteItem(txtItemId.getText());
+            boolean isDeleted=   ItemDAOImpl.deleteItem(txtItemId.getText());
             if (isDeleted){
                 new Alert(Alert.AlertType.INFORMATION,"Item  Deleted Successfully!").show();
 

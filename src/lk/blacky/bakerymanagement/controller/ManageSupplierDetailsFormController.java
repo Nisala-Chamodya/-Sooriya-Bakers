@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import lk.blacky.bakerymanagement.dao.SupplierDAOImpl;
 import lk.blacky.bakerymanagement.model.SupplierModel;
 import lk.blacky.bakerymanagement.to.Supplier;
 import lk.blacky.bakerymanagement.util.Navigation;
@@ -46,7 +47,7 @@ public class ManageSupplierDetailsFormController {
 
 
         try {
-            boolean isAdded = SupplierModel.AddSupplier(supplier);
+            boolean isAdded = SupplierDAOImpl.AddSupplier(supplier);
             if (isAdded){
                 new Alert(Alert.AlertType.CONFIRMATION, "Supplier Added!").show();
             }else {
@@ -86,7 +87,7 @@ public class ManageSupplierDetailsFormController {
     public void btnSearchSupplierOnAction(ActionEvent actionEvent) {
 
         try {
-            Supplier supplier= SupplierModel.searchSupplier(txtSupplierId.getText());
+            Supplier supplier= SupplierDAOImpl.searchSupplier(txtSupplierId.getText());
             if (supplier==null){
                 new Alert(Alert.AlertType.INFORMATION,"Supplier Not Found").show();
             }else {
@@ -119,7 +120,7 @@ public class ManageSupplierDetailsFormController {
 
 
         try {
-           boolean isDeleted = SupplierModel.deleteSupplier(txtSupplierId.getText());
+           boolean isDeleted = SupplierDAOImpl.deleteSupplier(txtSupplierId.getText());
             if (isDeleted){
                 new Alert(Alert.AlertType.INFORMATION,"Supplier  Deleted Successfully!").show();
 
@@ -152,7 +153,7 @@ public class ManageSupplierDetailsFormController {
         Supplier supplier=new Supplier(supplierId,name,address,tpNo,eMail);
 
         try {
-            boolean isUpdated=  SupplierModel.updateSupplier(supplier);
+            boolean isUpdated=  SupplierDAOImpl.updateSupplier(supplier);
             if (isUpdated){
                 new Alert(Alert.AlertType.INFORMATION,"Supplier Updated Sucessfully").show();
             }else {

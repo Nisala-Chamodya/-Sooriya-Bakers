@@ -1,13 +1,12 @@
-package lk.blacky.bakerymanagement.model;
+package lk.blacky.bakerymanagement.dao;
 
-import lk.blacky.bakerymanagement.to.Customer;
 import lk.blacky.bakerymanagement.to.Product;
 import lk.blacky.bakerymanagement.util.CRUDUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ProductModel {
+public class ProductDAOImpl {
     public static boolean AddProduct(Product product) throws SQLException, ClassNotFoundException {
         String sql = "INSERT INTO product VALUES (?, ?, ?, ?,?)";
         return CRUDUtil.execute(sql, product.getProductId(),
