@@ -1,18 +1,35 @@
 package lk.blacky.bakerymanagement.dao;
 
+import lk.blacky.bakerymanagement.dao.custom.impl.CheifCookDAO;
 import lk.blacky.bakerymanagement.to.CheifCook;
 import lk.blacky.bakerymanagement.util.CRUDUtil;
 
 import java.sql.SQLException;
 
-public class CheifCookDAOImpl {
-    public static boolean addCheifCook(CheifCook cheifCook) throws SQLException, ClassNotFoundException {
+public class CheifCookDAOImpl implements CheifCookDAO {
+    public  boolean addCheifCook(CheifCook cheifCook) {
         String sql = "INSERT INTO cheif_cook VALUES (?, ?)";
-        return CRUDUtil.execute(sql, cheifCook.getUserName(),cheifCook.getPassword());
+        try {
+            return CRUDUtil.execute(sql, cheifCook.getUserName(),cheifCook.getPassword());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
-    public static boolean updateCheifCook(CheifCook cheifCook) throws SQLException, ClassNotFoundException {
+    public  boolean updateCheifCook(CheifCook cheifCook) {
         String sql = "UPDATE cheif_cook SET password=? WHERE  user_name=? ";
-        return CRUDUtil.execute(sql, cheifCook.getPassword(),cheifCook.getUserName());
+        try {
+            return CRUDUtil.execute(sql, cheifCook.getPassword(),cheifCook.getUserName());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+
+        }
+        return false;
     }
+
 }

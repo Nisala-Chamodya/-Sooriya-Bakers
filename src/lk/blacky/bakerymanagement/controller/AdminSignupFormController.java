@@ -7,6 +7,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.blacky.bakerymanagement.dao.AdminDAOImpl;
+import lk.blacky.bakerymanagement.dao.custom.impl.AdminDAO;
 import lk.blacky.bakerymanagement.model.AddminModel;
 import lk.blacky.bakerymanagement.model.RecipeModel;
 import lk.blacky.bakerymanagement.to.Admin;
@@ -50,7 +51,7 @@ public class AdminSignupFormController {
 
 
         Admin admin = new Admin(userName,password);
-        AdminDAOImpl adminDAO=new AdminDAOImpl();
+        AdminDAO adminDAO=new AdminDAOImpl();
             boolean isAdded = adminDAO.addAdmin(admin);
             if (isAdded) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Sign Up Successfully!").show();

@@ -7,6 +7,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.blacky.bakerymanagement.dao.CheifCookDAOImpl;
+import lk.blacky.bakerymanagement.dao.custom.impl.CheifCookDAO;
 import lk.blacky.bakerymanagement.model.CheifCookModel;
 import lk.blacky.bakerymanagement.to.CheifCook;
 import lk.blacky.bakerymanagement.util.Navigation;
@@ -45,23 +46,18 @@ public class CheifCookForgotPasswordFormController {
 
 
             CheifCook cheifCook = new CheifCook(userName, password);
+            CheifCookDAO cheifCookDAO=new CheifCookDAOImpl();
 
-            try {
-                boolean isUpdated = CheifCookDAOImpl.updateCheifCook(cheifCook);
-                if (isUpdated) {
-                    new Alert(Alert.AlertType.INFORMATION, "Password Updated Successfully").show();
-                    Clear();
-                } else {
-                    new Alert(Alert.AlertType.WARNING, "Something happened!").show();
-                    Clear();
-                }
-
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+            boolean isUpdated = cheifCookDAO.updateCheifCook(cheifCook);
+            if (isUpdated) {
+                new Alert(Alert.AlertType.INFORMATION, "Password Updated Successfully").show();
+                Clear();
+            } else {
+                new Alert(Alert.AlertType.WARNING, "Something happened!").show();
+                Clear();
             }
+
+
         }else {
             new Alert(Alert.AlertType.ERROR, "Please Insert Valid Password \n minimum 10 Digits ").show();
             txtPassword.setStyle("-jfx-unfocus-color : red");

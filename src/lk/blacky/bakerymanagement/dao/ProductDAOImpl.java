@@ -1,45 +1,78 @@
 package lk.blacky.bakerymanagement.dao;
 
+import lk.blacky.bakerymanagement.dao.custom.impl.ProductDAO;
 import lk.blacky.bakerymanagement.to.Product;
 import lk.blacky.bakerymanagement.util.CRUDUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ProductDAOImpl {
-    public static boolean AddProduct(Product product) throws SQLException, ClassNotFoundException {
+public class ProductDAOImpl implements ProductDAO {
+    public  boolean AddProduct(Product product) {
         String sql = "INSERT INTO product VALUES (?, ?, ?, ?,?)";
-        return CRUDUtil.execute(sql, product.getProductId(),
-                product.getProductName(), product.getPrice(), product.getDescription(), product.getAvailability());
+        try {
+            return CRUDUtil.execute(sql, product.getProductId(),
+                    product.getProductName(), product.getPrice(), product.getDescription(), product.getAvailability());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
-    public static Product searchProduct(String ProductId) throws SQLException, ClassNotFoundException {
+    public  Product searchProduct(String ProductId) {
         String sql = "SELECT * FROM product WHERE  product_id=? ";
-        ResultSet resultSet = CRUDUtil.execute(sql, ProductId);
-        if (resultSet.next()) {
-            return new Product(
-                    resultSet.getString(1),
-                    resultSet.getString(2),
-                    resultSet.getDouble(3),
-                    resultSet.getString(4),
-                    resultSet.getInt(5) );
+        ResultSet resultSet = null;
+        try {
+            resultSet = CRUDUtil.execute(sql, ProductId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
+            if (resultSet.next()) {
+                return new Product(
+                        resultSet.getString(1),
+                        resultSet.getString(2),
+                        resultSet.getDouble(3),
+                        resultSet.getString(4),
+                        resultSet.getInt(5) );
 
 
 
 
 
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return null;
     }
 
-    public static boolean updateProduct(Product product) throws SQLException, ClassNotFoundException {
+    public  boolean updateProduct(Product product)  {
         String sql = "UPDATE product SET name=?,price=?,discription=?,availability=? WHERE  product_id=? ";
-        return CRUDUtil.execute(sql, product.getProductName(), product.getPrice(), product.getDescription(), product.getAvailability(), product.getProductId());
+        try {
+            return CRUDUtil.execute(sql, product.getProductName(), product.getPrice(), product.getDescription(), product.getAvailability(), product.getProductId());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return false;
 
     }
 
-    public static boolean deleteProduct(String productId) throws SQLException, ClassNotFoundException {
+    public  boolean deleteProduct(String productId) {
         String sql = "DELETE FROM product WHERE product_id=? ";
-        return CRUDUtil.execute(sql, productId);
+        try {
+            return CRUDUtil.execute(sql, productId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

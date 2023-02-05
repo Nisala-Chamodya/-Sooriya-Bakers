@@ -6,6 +6,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.blacky.bakerymanagement.dao.CustomerDAOImpl;
+import lk.blacky.bakerymanagement.dao.custom.impl.CashierDAO;
+import lk.blacky.bakerymanagement.dao.custom.impl.CustomerDAO;
 import lk.blacky.bakerymanagement.to.Customer;
 import lk.blacky.bakerymanagement.util.Navigation;
 import lk.blacky.bakerymanagement.util.Routes;
@@ -22,6 +24,10 @@ public class CashierManageCustomerFormController {
     public JFXTextField txtNic;
     public JFXTextField txtAddress;
     public JFXTextField txtTpNo;
+
+
+//Dipendancy Injection
+    CustomerDAO customerDAO=new CustomerDAOImpl();
 
     public void backImgOnClickAction(MouseEvent mouseEvent) throws IOException {
         Navigation.navigate(Routes.CASHIERDASHBOARD,pane);
@@ -44,19 +50,12 @@ public class CashierManageCustomerFormController {
         String tpNo = txtTpNo.getText();
 
         Customer customer = new Customer(custId, name, nic, address, tpNo);
-        try {
-                boolean isAdded = CustomerDAOImpl.AddCustomer(customer);
-            if (isAdded) {
-                new Alert(Alert.AlertType.CONFIRMATION, "Customer Added!").show();
-            } else {
-                new Alert(Alert.AlertType.WARNING, "Something happened!").show();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-
-        }
+                            boolean isAdded = customerDAO.AddCustomer(customer);
+                            if (isAdded) {
+                                new Alert(Alert.AlertType.CONFIRMATION, "Customer Added!").show();
+                            } else {
+                                new Alert(Alert.AlertType.WARNING, "Something happened!").show();
+                            }
                         }else {
                             new Alert(Alert.AlertType.ERROR, "Pleace Insert Valid Te-No").show();
                             txtTpNo.setStyle("-jfx-unfocus-color : red");
@@ -110,17 +109,11 @@ public class CashierManageCustomerFormController {
                             String tpNo=txtTpNo.getText();
 
                             Customer customer=new Customer(custId,name,nic,address,tpNo);
-                            try {
-                                boolean isUpdated=  CustomerDAOImpl.updateCustomer(customer);
-                                if (isUpdated){
-                                    new Alert(Alert.AlertType.INFORMATION,"Customer Updated Sucessfully").show();
-                                }else {
-                                    new Alert(Alert.AlertType.WARNING, "Something happened!").show();
-                                }
-                            } catch (SQLException e) {
-                                e.printStackTrace();
-                            } catch (ClassNotFoundException e) {
-                                e.printStackTrace();
+                            boolean isUpdated=  customerDAO.updateCustomer(customer);
+                            if (isUpdated){
+                                new Alert(Alert.AlertType.INFORMATION,"Customer Updated Sucessfully").show();
+                            }else {
+                                new Alert(Alert.AlertType.WARNING, "Something happened!").show();
                             }
 
 
@@ -153,39 +146,27 @@ public class CashierManageCustomerFormController {
     public void btnSearchOnClickAction(ActionEvent actionEvent) {
 
 
-        try {
-            Customer customer= CustomerDAOImpl.searchCustomer(txtCustId.getText());
-            if (customer==null){
-                new Alert(Alert.AlertType.INFORMATION,"Customer Not Found").show();
-            }else {
-                txtName.setText(customer.getName());
-                txtNic.setText(customer.getNic());
-                txtAddress.setText(customer.getAddress());
-                txtTpNo.setText(customer.getTpNo());
+        Customer customer= customerDAO.searchCustomer(txtCustId.getText());
+        if (customer==null){
+            new Alert(Alert.AlertType.INFORMATION,"Customer Not Found").show();
+        }else {
+            txtName.setText(customer.getName());
+            txtNic.setText(customer.getNic());
+            txtAddress.setText(customer.getAddress());
+            txtTpNo.setText(customer.getTpNo());
 
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
     }
 
     public void btnDeleteOnClickAction(ActionEvent actionEvent) {
 
 
-        try {
-            boolean isDeleted=   CustomerDAOImpl.deleteCustomer(txtCustId.getText());
-            if (isDeleted){
-                new Alert(Alert.AlertType.INFORMATION,"Customer  Deleted Successfully!").show();
+        boolean isDeleted=   customerDAO.deleteCustomer(txtCustId.getText());
+        if (isDeleted){
+            new Alert(Alert.AlertType.INFORMATION,"Customer  Deleted Successfully!").show();
 
-            }else {
-                new Alert(Alert.AlertType.WARNING, "Something happened!").show();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        }else {
+            new Alert(Alert.AlertType.WARNING, "Something happened!").show();
         }
     }
 

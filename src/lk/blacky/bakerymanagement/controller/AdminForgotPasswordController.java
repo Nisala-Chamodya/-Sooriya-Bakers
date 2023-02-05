@@ -7,6 +7,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.blacky.bakerymanagement.dao.AdminDAOImpl;
+import lk.blacky.bakerymanagement.dao.custom.impl.AdminDAO;
 import lk.blacky.bakerymanagement.model.AddminModel;
 import lk.blacky.bakerymanagement.model.RecipeModel;
 import lk.blacky.bakerymanagement.to.Admin;
@@ -47,7 +48,8 @@ public class AdminForgotPasswordController {
 
             Admin admin = new Admin(userName, password);
 
-            AdminDAOImpl adminDAO =new AdminDAOImpl();
+            //loose couppling
+            AdminDAO  adminDAO =new AdminDAOImpl();
             boolean isUpdated = adminDAO.updateAdmin(admin);
             if (isUpdated) {
                 new Alert(Alert.AlertType.INFORMATION, "Password Updated Successfully").show();

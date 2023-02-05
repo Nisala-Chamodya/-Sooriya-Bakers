@@ -7,6 +7,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.blacky.bakerymanagement.dao.CheifCookDAOImpl;
+import lk.blacky.bakerymanagement.dao.custom.impl.CashierDAO;
+import lk.blacky.bakerymanagement.dao.custom.impl.CheifCookDAO;
 import lk.blacky.bakerymanagement.model.CheifCookModel;
 import lk.blacky.bakerymanagement.to.CheifCook;
 import lk.blacky.bakerymanagement.util.Navigation;
@@ -47,23 +49,18 @@ public class CheifCookSignupFormController {
 
 
             CheifCook cheifCook = new CheifCook(userName, password);
+            CheifCookDAO cheifCookDAO=new CheifCookDAOImpl();
 
 
-            try {
-                boolean isAdded = CheifCookDAOImpl.addCheifCook(cheifCook);
-                if (isAdded) {
-                    new Alert(Alert.AlertType.CONFIRMATION, "Sign Up Successfully!").show();
-                    Clear();
-                } else {
-                    new Alert(Alert.AlertType.WARNING, "Something happened!").show();
-                    Clear();
-                }
-
-            } catch (SQLException e) {
-
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+            boolean isAdded = cheifCookDAO.addCheifCook(cheifCook);
+            if (isAdded) {
+                new Alert(Alert.AlertType.CONFIRMATION, "Sign Up Successfully!").show();
+                Clear();
+            } else {
+                new Alert(Alert.AlertType.WARNING, "Something happened!").show();
+                Clear();
             }
+
         }else {
             new Alert(Alert.AlertType.ERROR, "Please Insert Valid Password \n minimum 10 Digits ").show();
             txtPassword.setStyle("-jfx-unfocus-color : red");

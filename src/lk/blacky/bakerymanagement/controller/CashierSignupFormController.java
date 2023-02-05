@@ -7,6 +7,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.blacky.bakerymanagement.dao.CashierDAOImpl;
+import lk.blacky.bakerymanagement.dao.custom.impl.CashierDAO;
 import lk.blacky.bakerymanagement.to.Cashier;
 import lk.blacky.bakerymanagement.util.Navigation;
 import lk.blacky.bakerymanagement.util.Routes;
@@ -44,23 +45,18 @@ public class CashierSignupFormController {
 
 
             Cashier cashier = new Cashier(userName, password);
+            CashierDAO cashierDAO=new CashierDAOImpl();
 
-            try {
-                    boolean isAdded = CashierDAOImpl.addCashier(cashier);
-                if (isAdded) {
-                    new Alert(Alert.AlertType.CONFIRMATION, "Sign Up Successfully!").show();
-                    Clear();
-                } else {
-                    new Alert(Alert.AlertType.WARNING, "Something happened!").show();
-                    Clear();
-                }
-
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+            boolean isAdded = cashierDAO.addCashier(cashier);
+            if (isAdded) {
+                new Alert(Alert.AlertType.CONFIRMATION, "Sign Up Successfully!").show();
+                Clear();
+            } else {
+                new Alert(Alert.AlertType.WARNING, "Something happened!").show();
+                Clear();
             }
+
+
         }else {
             new Alert(Alert.AlertType.ERROR, "Please Insert Valid Password \n minimum 10 Digits ").show();
             txtPassword.setStyle("-jfx-unfocus-color : red");

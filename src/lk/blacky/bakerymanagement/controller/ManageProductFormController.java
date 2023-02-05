@@ -6,6 +6,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.blacky.bakerymanagement.dao.ProductDAOImpl;
+import lk.blacky.bakerymanagement.dao.custom.impl.ProductDAO;
 import lk.blacky.bakerymanagement.to.Product;
 import lk.blacky.bakerymanagement.util.Navigation;
 import lk.blacky.bakerymanagement.util.Routes;
@@ -23,7 +24,8 @@ public class ManageProductFormController {
     public JFXTextField txtDescription;
     public JFXTextField txtAvailabilty;
 
-
+// Dipendancy Injection
+    ProductDAO productDAO=new ProductDAOImpl();
 
 
 
@@ -51,19 +53,13 @@ public class ManageProductFormController {
         int availability=Integer.parseInt(txtAvailabilty.getText());
 
         Product product = new Product(productId,productName,price,description,availability);
-        try {
-            boolean isAdded= ProductDAOImpl.AddProduct(product);
-            if (isAdded){
-                new Alert(Alert.AlertType.CONFIRMATION, "Product Added!").show();
-            }else {
-                new Alert(Alert.AlertType.WARNING, "Something happened!").show();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-                    }else {
+                            boolean isAdded= productDAO.AddProduct(product);
+                            if (isAdded){
+                                new Alert(Alert.AlertType.CONFIRMATION, "Product Added!").show();
+                            }else {
+                                new Alert(Alert.AlertType.WARNING, "Something happened!").show();
+                            }
+                        }else {
                             new Alert(Alert.AlertType.ERROR, "Pleace Enter Valid Number").show();
                             txtAvailabilty.setStyle("-jfx-unfocus-color : red");
                         }
@@ -104,21 +100,15 @@ public class ManageProductFormController {
     }
 
     public void btnProductSearchOnAction(ActionEvent actionEvent) {
-        try {
-            Product product= ProductDAOImpl.searchProduct(txtProductId.getText());
-            if (product==null){
-                new Alert(Alert.AlertType.INFORMATION,"Product Not Found").show();
-            }else {
-                txtProductName.setText(product.getProductName());
-                txtPrice.setText(String.valueOf(product.getPrice()));
-                txtDescription.setText(product.getDescription());
-                txtAvailabilty.setText(String.valueOf(product.getAvailability()));
+        Product product= productDAO.searchProduct(txtProductId.getText());
+        if (product==null){
+            new Alert(Alert.AlertType.INFORMATION,"Product Not Found").show();
+        }else {
+            txtProductName.setText(product.getProductName());
+            txtPrice.setText(String.valueOf(product.getPrice()));
+            txtDescription.setText(product.getDescription());
+            txtAvailabilty.setText(String.valueOf(product.getAvailability()));
 
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
 
 
@@ -138,18 +128,12 @@ public class ManageProductFormController {
         int availability=Integer.parseInt(txtAvailabilty.getText());
 
         Product product = new Product(productId,productName,price,description,availability);
-        try {
-            boolean isUpdated=  ProductDAOImpl.updateProduct(product);
-            if (isUpdated){
-                new Alert(Alert.AlertType.INFORMATION,"Product Updated Sucessfully").show();
-            }else {
-                new Alert(Alert.AlertType.WARNING, "Something happened!").show();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+                            boolean isUpdated=  productDAO.updateProduct(product);
+                            if (isUpdated){
+                                new Alert(Alert.AlertType.INFORMATION,"Product Updated Sucessfully").show();
+                            }else {
+                                new Alert(Alert.AlertType.WARNING, "Something happened!").show();
+                            }
 
 
                         }else {
@@ -197,18 +181,12 @@ public class ManageProductFormController {
     }
 
     public void btnDeleteProductOnAction(ActionEvent actionEvent) {
-        try {
-            boolean isDeleted=   ProductDAOImpl.deleteProduct(txtProductId.getText());
-            if (isDeleted){
-                new Alert(Alert.AlertType.INFORMATION,"Product  Deleted Successfully!").show();
+        boolean isDeleted=   productDAO.deleteProduct(txtProductId.getText());
+        if (isDeleted){
+            new Alert(Alert.AlertType.INFORMATION,"Product  Deleted Successfully!").show();
 
-            }else {
-                new Alert(Alert.AlertType.WARNING, "Something happened!").show();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        }else {
+            new Alert(Alert.AlertType.WARNING, "Something happened!").show();
         }
     }
 }
