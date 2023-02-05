@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import lk.blacky.bakerymanagement.dao.CashierDAOImp;
 import lk.blacky.bakerymanagement.model.AddminModel;
 import lk.blacky.bakerymanagement.model.CashierModel;
 import lk.blacky.bakerymanagement.to.Admin;
@@ -47,7 +48,7 @@ public class CashierForgotPasswordFormController {
 
             Cashier cashier = new Cashier(userName, password);
             try {
-                boolean isUpdated = CashierModel.updateCashier(cashier);
+                boolean isUpdated = CashierDAOImp.updateCashier(cashier);
                 if (isUpdated) {
                     new Alert(Alert.AlertType.INFORMATION, "Password Updated Successfully").show();
                     Clear();

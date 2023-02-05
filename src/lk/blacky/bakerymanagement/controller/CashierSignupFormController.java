@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import lk.blacky.bakerymanagement.dao.CashierDAOImp;
 import lk.blacky.bakerymanagement.model.AddminModel;
 import lk.blacky.bakerymanagement.model.CashierModel;
 import lk.blacky.bakerymanagement.to.Admin;
@@ -48,7 +49,7 @@ public class CashierSignupFormController {
             Cashier cashier = new Cashier(userName, password);
 
             try {
-                boolean isAdded = CashierModel.addCashier(cashier);
+                    boolean isAdded = CashierDAOImp.addCashier(cashier);
                 if (isAdded) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Sign Up Successfully!").show();
                     Clear();
