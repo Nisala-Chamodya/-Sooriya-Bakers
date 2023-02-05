@@ -47,22 +47,17 @@ public class AdminForgotPasswordController {
 
             Admin admin = new Admin(userName, password);
 
-            try {
-                boolean isUpdated = AdminDAOImpl.updateAdmin(admin);
-                if (isUpdated) {
-                    new Alert(Alert.AlertType.INFORMATION, "Password Updated Successfully").show();
-                    Clear();
-                } else {
-                    new Alert(Alert.AlertType.WARNING, "Something happened!").show();
-                    Clear();
-                }
-
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+            AdminDAOImpl adminDAO =new AdminDAOImpl();
+            boolean isUpdated = adminDAO.updateAdmin(admin);
+            if (isUpdated) {
+                new Alert(Alert.AlertType.INFORMATION, "Password Updated Successfully").show();
+                Clear();
+            } else {
+                new Alert(Alert.AlertType.WARNING, "Something happened!").show();
+                Clear();
             }
+
+
         }else {
             new Alert(Alert.AlertType.ERROR, "Please Insert Valid Password \n minimum 10 Digits ").show();
             txtPassword.setStyle("-jfx-unfocus-color : red");

@@ -1,5 +1,6 @@
 package lk.blacky.bakerymanagement.dao;
 
+import lk.blacky.bakerymanagement.dao.custom.impl.AdminDAO;
 import lk.blacky.bakerymanagement.db.DBConnection;
 import lk.blacky.bakerymanagement.to.Admin;
 import lk.blacky.bakerymanagement.util.CRUDUtil;
@@ -9,24 +10,42 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class AdminDAOImpl {
-    public static boolean addAdmin(Admin admin) throws SQLException, ClassNotFoundException {
+public class AdminDAOImpl implements AdminDAO {
+    public  boolean addAdmin(Admin admin)  {
         String sql = "INSERT INTO admin VALUES (?, ?)";
-        return CRUDUtil.execute(sql, admin.getUserName(),admin.getPassword());
-
+        try {
+            return CRUDUtil.execute(sql, admin.getUserName(),admin.getPassword());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+       return false;
     }
 
-    public static boolean updateAdmin(Admin admin) throws SQLException, ClassNotFoundException {
+    public  boolean updateAdmin(Admin admin)  {
 
         String sql = "UPDATE admin SET password=? WHERE  user_name=? ";
-        return CRUDUtil.execute(sql, admin.getPassword(),admin.getUserName());
+        try {
+            return CRUDUtil.execute(sql, admin.getPassword(),admin.getUserName());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
-
+return false;
     }
-    public static ArrayList<Admin> checkAdminPassword() throws SQLException, ClassNotFoundException {
-        Connection connection = DBConnection.getInstance().getConnection();
-         ResultSet rs = connection.createStatement().executeQuery("SELECT * FROM admin");
-         ArrayList<Admin> allAdmin=new ArrayList<>();
+    public ArrayList<Admin> checkAdminPassword() throws SQLException {
+
+        ResultSet rs = null;
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            rs = connection.createStatement().executeQuery("SELECT * FROM admin");
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        ArrayList<Admin> allAdmin=new ArrayList<>();
          while (rs.next()){
              String userName=rs.getString(1);
              String password=rs.getString(2);

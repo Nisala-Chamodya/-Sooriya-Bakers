@@ -6,9 +6,8 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import lk.blacky.bakerymanagement.model.CashierModel;
-import lk.blacky.bakerymanagement.model.CheifCokModel;
-import lk.blacky.bakerymanagement.to.Cashier;
+import lk.blacky.bakerymanagement.dao.CheifCookDAOImpl;
+import lk.blacky.bakerymanagement.model.CheifCookModel;
 import lk.blacky.bakerymanagement.to.CheifCook;
 import lk.blacky.bakerymanagement.util.Navigation;
 import lk.blacky.bakerymanagement.util.Routes;
@@ -48,7 +47,7 @@ public class CheifCookForgotPasswordFormController {
             CheifCook cheifCook = new CheifCook(userName, password);
 
             try {
-                boolean isUpdated = CheifCokModel.updateCheifCook(cheifCook);
+                boolean isUpdated = CheifCookDAOImpl.updateCheifCook(cheifCook);
                 if (isUpdated) {
                     new Alert(Alert.AlertType.INFORMATION, "Password Updated Successfully").show();
                     Clear();

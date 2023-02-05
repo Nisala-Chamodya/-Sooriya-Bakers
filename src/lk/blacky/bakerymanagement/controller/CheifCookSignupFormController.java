@@ -6,9 +6,8 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import lk.blacky.bakerymanagement.model.CashierModel;
-import lk.blacky.bakerymanagement.model.CheifCokModel;
-import lk.blacky.bakerymanagement.to.Cashier;
+import lk.blacky.bakerymanagement.dao.CheifCookDAOImpl;
+import lk.blacky.bakerymanagement.model.CheifCookModel;
 import lk.blacky.bakerymanagement.to.CheifCook;
 import lk.blacky.bakerymanagement.util.Navigation;
 import lk.blacky.bakerymanagement.util.Routes;
@@ -51,7 +50,7 @@ public class CheifCookSignupFormController {
 
 
             try {
-                boolean isAdded = CheifCokModel.addCheifCook(cheifCook);
+                boolean isAdded = CheifCookDAOImpl.addCheifCook(cheifCook);
                 if (isAdded) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Sign Up Successfully!").show();
                     Clear();

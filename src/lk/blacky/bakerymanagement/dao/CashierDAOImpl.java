@@ -5,7 +5,7 @@ import lk.blacky.bakerymanagement.util.CRUDUtil;
 
 import java.sql.SQLException;
 
-public class CashierDAOImp {
+public class CashierDAOImpl {
     public static boolean addCashier(Cashier cashier) throws SQLException, ClassNotFoundException {
         String sql = "INSERT INTO cashier VALUES (?, ?)";
         return CRUDUtil.execute(sql, cashier.getUserName(),cashier.getPassword());

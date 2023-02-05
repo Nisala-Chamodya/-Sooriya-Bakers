@@ -50,8 +50,8 @@ public class AdminSignupFormController {
 
 
         Admin admin = new Admin(userName,password);
-        try {
-            boolean isAdded = AdminDAOImpl.addAdmin(admin);
+        AdminDAOImpl adminDAO=new AdminDAOImpl();
+            boolean isAdded = adminDAO.addAdmin(admin);
             if (isAdded) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Sign Up Successfully!").show();
                 Clear();
@@ -60,12 +60,7 @@ public class AdminSignupFormController {
                 Clear();
             }
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }else {
+        }else {
             new Alert(Alert.AlertType.ERROR, "Please Insert Valid Password \n minimum 10 Digits ").show();
             txtPassword.setStyle("-jfx-unfocus-color : red");
         }
