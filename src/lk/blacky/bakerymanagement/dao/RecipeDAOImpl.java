@@ -1,5 +1,6 @@
 package lk.blacky.bakerymanagement.dao;
 
+import lk.blacky.bakerymanagement.dao.custom.impl.CRUDDAO;
 import lk.blacky.bakerymanagement.dao.custom.impl.RecipeDAO;
 import lk.blacky.bakerymanagement.to.Recipe;
 import lk.blacky.bakerymanagement.util.CRUDUtil;
@@ -7,9 +8,9 @@ import lk.blacky.bakerymanagement.util.CRUDUtil;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class RecipeDAOImpl implements RecipeDAO {
+public class RecipeDAOImpl implements CRUDDAO<Recipe,String> {
 
-    public  boolean addRecipe(Recipe recipe) {
+    public  boolean add(Recipe recipe) {
 
         String sql = "INSERT INTO recipe VALUES (?, ?, ?)";
         try {
@@ -23,7 +24,7 @@ public class RecipeDAOImpl implements RecipeDAO {
         return false;
     }
 
-    public  Recipe searchRecipe(String recipeId) {
+    public  Recipe search(String recipeId) {
         String sql = "SELECT * FROM recipe WHERE  recipe_id=? ";
         ResultSet resultSet = null;
         try {
@@ -53,7 +54,7 @@ public class RecipeDAOImpl implements RecipeDAO {
         return null;
     }
 
-    public  boolean updateRecipe(Recipe recipe) {
+    public  boolean update(Recipe recipe) {
 
         String sql = "UPDATE recipe SET name=?,description=? WHERE  recipe_id=? ";
         try {
@@ -66,7 +67,7 @@ public class RecipeDAOImpl implements RecipeDAO {
         return false;
     }
 
-    public  boolean deleteRecipe(String recipeId) {
+    public  boolean delete(String recipeId) {
         String sql = "DELETE FROM recipe WHERE recipe_id=? ";
         try {
             return CRUDUtil.execute(sql, recipeId);

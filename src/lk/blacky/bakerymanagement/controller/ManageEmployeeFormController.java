@@ -6,6 +6,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.blacky.bakerymanagement.dao.EmployeeDAOImpl;
+import lk.blacky.bakerymanagement.dao.custom.impl.CRUDDAO;
 import lk.blacky.bakerymanagement.dao.custom.impl.EmployeeDAO;
 import lk.blacky.bakerymanagement.model.EmployeeModel;
 import lk.blacky.bakerymanagement.to.Employee;
@@ -31,7 +32,7 @@ public class ManageEmployeeFormController {
 
 
     //Dipendancy Injection
-    EmployeeDAO  employeeDAO=new EmployeeDAOImpl();
+    CRUDDAO employeeDAO=new EmployeeDAOImpl();
 
 
     public void backImgClickOnAction(MouseEvent mouseEvent) throws IOException {
@@ -63,7 +64,7 @@ public class ManageEmployeeFormController {
 
         Employee employee = new Employee(empId,name,gender,division,salary,tpNo,email,date);
 
-                                        boolean isAdded = employeeDAO.addEmployee(employee);
+                                        boolean isAdded = employeeDAO.add(employee);
                                         if (isAdded){
 
                                             new Alert(Alert.AlertType.CONFIRMATION, "Employee Added!").show();
@@ -130,7 +131,7 @@ public class ManageEmployeeFormController {
     }
 
     public void btnSearchOnAction(ActionEvent actionEvent) {
-        Employee employee= employeeDAO.searchEmployee(txtEmpId.getText());
+        Employee employee= (Employee) employeeDAO.search(txtEmpId.getText());
 
         if (employee==null){
             new Alert(Alert.AlertType.INFORMATION,"Employee Not Found").show();
@@ -183,7 +184,7 @@ public class ManageEmployeeFormController {
 
         Employee employee = new Employee(empId,name,gender,division,salary,tpNo,email,date);
 
-                                        boolean isAdded = employeeDAO.updateEmployee(employee);
+                                        boolean isAdded = employeeDAO.update(employee);
                                         if (isAdded){
 
                                             new Alert(Alert.AlertType.CONFIRMATION, "Employee Updated!").show();
@@ -240,7 +241,7 @@ public class ManageEmployeeFormController {
     public void btnDeleteEmployeeOnAction(ActionEvent actionEvent) {
 
 
-        boolean isDeleted=   employeeDAO.deleteEmployee(txtEmpId.getText());
+        boolean isDeleted=   employeeDAO.delete(txtEmpId.getText());
         if (isDeleted){
             new Alert(Alert.AlertType.INFORMATION,"Employee  Deleted Successfully!").show();
 

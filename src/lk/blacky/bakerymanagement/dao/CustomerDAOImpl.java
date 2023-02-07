@@ -19,7 +19,7 @@ public class  CustomerDAOImpl implements CRUDDAO<Customer,String> {
     public CustomerDAOImpl(String text) {
     }
 
-    public  boolean Add(Customer customer) {
+    public  boolean add(Customer customer) {
         String sql = "INSERT INTO Customer VALUES (?, ?, ?, ?,?)";
         try {
             return CRUDUtil.execute(sql, customer.getCustId(), customer.getName(), customer.getNic(), customer.getAddress(), customer.getTpNo());

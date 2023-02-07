@@ -6,6 +6,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.blacky.bakerymanagement.dao.ItemDAOImpl;
+import lk.blacky.bakerymanagement.dao.custom.impl.CRUDDAO;
 import lk.blacky.bakerymanagement.dao.custom.impl.ItemDAO;
 import lk.blacky.bakerymanagement.model.ItemModel;
 import lk.blacky.bakerymanagement.to.Item;
@@ -26,7 +27,7 @@ public class ManageItemsFormController {
     public JFXTextField txtAvailability;
     //Dependancy Injection
 
-    ItemDAO itemDAO=new ItemDAOImpl();
+    CRUDDAO itemDAO=new ItemDAOImpl();
     public void backImgOnClickAction(MouseEvent mouseEvent) throws IOException {
         Navigation.navigate(Routes.CHEIFCOOKDASHBOARD,pane);
     }
@@ -44,7 +45,7 @@ public class ManageItemsFormController {
 
             Item item = new Item(itemId, brand, description, availability);
 
-                        boolean isAdded = itemDAO.AddItem(item);
+                        boolean isAdded = itemDAO.add(item);
                         if (isAdded) {
                             new Alert(Alert.AlertType.CONFIRMATION, "Item Added!").show();
                         } else {
@@ -76,7 +77,7 @@ public class ManageItemsFormController {
     }
 
     public void btnSearchItemOnAction(ActionEvent actionEvent) {
-        Item item= itemDAO.searchItem(txtItemId.getText());
+        Item item= (Item) itemDAO.search(txtItemId.getText());
         if (item==null){
             new Alert(Alert.AlertType.INFORMATION,"Item Not Found").show();
         }else {
@@ -101,7 +102,7 @@ public class ManageItemsFormController {
 
 
         Item item = new Item(itemId,brand,description,availability);
-                        boolean isUpdated=  itemDAO.updateItem(item);
+                        boolean isUpdated=  itemDAO.update(item);
                         if (isUpdated){
                             new Alert(Alert.AlertType.INFORMATION,"Item Updated Successfully").show();
                         }else {
@@ -130,7 +131,7 @@ public class ManageItemsFormController {
 
     public void btnDeleteItemOnAction(ActionEvent actionEvent) {
 
-        boolean isDeleted=   itemDAO.deleteItem(txtItemId.getText());
+        boolean isDeleted=   itemDAO.delete(txtItemId.getText());
         if (isDeleted){
             new Alert(Alert.AlertType.INFORMATION,"Item  Deleted Successfully!").show();
 

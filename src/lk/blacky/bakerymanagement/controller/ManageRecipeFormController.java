@@ -7,6 +7,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.blacky.bakerymanagement.dao.RecipeDAOImpl;
+import lk.blacky.bakerymanagement.dao.custom.impl.CRUDDAO;
 import lk.blacky.bakerymanagement.dao.custom.impl.RecipeDAO;
 import lk.blacky.bakerymanagement.model.ProductModel;
 import lk.blacky.bakerymanagement.model.RecipeModel;
@@ -28,7 +29,7 @@ public class ManageRecipeFormController {
 
     // Dependancy Injection
 
-    RecipeDAO recipeDAO=new RecipeDAOImpl();
+    CRUDDAO recipeDAO=new RecipeDAOImpl();
 
     public void backImgClickOnAction(MouseEvent mouseEvent) throws IOException {
         Navigation.navigate(Routes.CHEIFCOOKDASHBOARD,pane);
@@ -50,7 +51,7 @@ public class ManageRecipeFormController {
             Recipe recipe = new Recipe(recipeId, foodName, description);
 
 
-                boolean isAdded = recipeDAO.addRecipe(recipe);
+                boolean isAdded = recipeDAO.add(recipe);
                 if (isAdded) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Recipe Added!").show();
                 } else {
@@ -78,7 +79,7 @@ public class ManageRecipeFormController {
     }
 
     public void btnSearchRecipeOnAction(ActionEvent actionEvent) {
-        Recipe recipe= recipeDAO.searchRecipe(txtRecipeId.getText());
+        Recipe recipe= (Recipe) recipeDAO.search(txtRecipeId.getText());
         if (recipe==null){
             new Alert(Alert.AlertType.INFORMATION,"Recipe Not Found").show();
         }else {
@@ -101,7 +102,7 @@ public class ManageRecipeFormController {
 
                 Recipe recipe = new Recipe(recipeId, foodName, description);
 
-                boolean isUpdated = recipeDAO.updateRecipe(recipe);
+                boolean isUpdated = recipeDAO.update(recipe);
                 if (isUpdated) {
                     new Alert(Alert.AlertType.INFORMATION, "Recipe Updated Successfully").show();
                 } else {
@@ -121,7 +122,7 @@ public class ManageRecipeFormController {
     }
 
     public void btnDeleteRecipeOnAction(ActionEvent actionEvent) {
-        boolean isDeleted=   recipeDAO.deleteRecipe(txtRecipeId.getText());
+        boolean isDeleted=   recipeDAO.delete(txtRecipeId.getText());
         if (isDeleted){
             new Alert(Alert.AlertType.INFORMATION,"Recipe  Deleted Successfully!").show();
 

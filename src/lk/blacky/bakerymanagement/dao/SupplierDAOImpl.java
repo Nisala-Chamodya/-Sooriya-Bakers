@@ -1,5 +1,6 @@
 package lk.blacky.bakerymanagement.dao;
 
+import lk.blacky.bakerymanagement.dao.custom.impl.CRUDDAO;
 import lk.blacky.bakerymanagement.dao.custom.impl.SupplierDAO;
 import lk.blacky.bakerymanagement.to.Supplier;
 import lk.blacky.bakerymanagement.util.CRUDUtil;
@@ -7,9 +8,9 @@ import lk.blacky.bakerymanagement.util.CRUDUtil;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class SupplierDAOImpl implements SupplierDAO {
+public class SupplierDAOImpl implements CRUDDAO<Supplier,String> {
 
-    public  boolean AddSupplier(Supplier supplier) {
+    public  boolean add(Supplier supplier) {
         String sql = "INSERT INTO supplier VALUES (?, ?, ?, ?,?)";
         try {
             return CRUDUtil.execute(sql, supplier.getSupplierId(), supplier.getName(), supplier.getAddress(),
@@ -22,7 +23,7 @@ public class SupplierDAOImpl implements SupplierDAO {
         return false;
     }
 
-    public  Supplier searchSupplier(String supplierId) {
+    public  Supplier search(String supplierId) {
         String sql = "SELECT * FROM supplier WHERE  supplier_id=? ";
         ResultSet resultSet = null;
         try {
@@ -52,7 +53,7 @@ public class SupplierDAOImpl implements SupplierDAO {
         return null;
     }
 
-    public  boolean deleteSupplier(String supplierId) {
+    public  boolean delete(String supplierId) {
 
         String sql = "DELETE FROM supplier WHERE supplier_id=? ";
         try {
@@ -65,7 +66,8 @@ public class SupplierDAOImpl implements SupplierDAO {
         return false;
     }
 
-    public  boolean updateSupplier(Supplier supplier)  {
+
+    public  boolean update(Supplier supplier)  {
 
         String sql = "UPDATE supplier SET name=?,address=?,tp_no=?,e_mail=? WHERE  supplier_id=? ";
         try {

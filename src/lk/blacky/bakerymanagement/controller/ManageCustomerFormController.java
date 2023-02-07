@@ -16,7 +16,6 @@
 
         import java.io.IOException;
         import java.sql.SQLException;
-
         import static lk.blacky.bakerymanagement.util.Validator.*;
 
 public class ManageCustomerFormController {
@@ -50,7 +49,7 @@ public class ManageCustomerFormController {
                                 Customer customer = new Customer(custId, name, nic, address, tpNo);
 
 
-                                boolean isAdded = customerDAO.Add(customer);
+                                boolean isAdded = customerDAO.add(customer);
                                 if (isAdded) {
                                     new Alert(Alert.AlertType.CONFIRMATION, "Customer Added!").show();
                                 } else {
@@ -142,7 +141,7 @@ public class ManageCustomerFormController {
         }
 
         public void btnSearchCustomerOnAction(ActionEvent actionEvent) {
-            Customer customer = customerDAO.search(txtCustId.getText());
+            Customer customer = (Customer) customerDAO.search(txtCustId.getText());
             if (customer == null) {
                 new Alert(Alert.AlertType.INFORMATION, "Customer Not Found").show();
             } else {

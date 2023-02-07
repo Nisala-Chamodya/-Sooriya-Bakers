@@ -6,6 +6,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.blacky.bakerymanagement.dao.ProductDAOImpl;
+import lk.blacky.bakerymanagement.dao.custom.impl.CRUDDAO;
 import lk.blacky.bakerymanagement.dao.custom.impl.ProductDAO;
 import lk.blacky.bakerymanagement.to.Product;
 import lk.blacky.bakerymanagement.util.Navigation;
@@ -24,7 +25,7 @@ public class ManageProductFormController {
     public JFXTextField txtAvailabilty;
 
 // Dipendancy Injection
-    ProductDAO productDAO=new ProductDAOImpl();
+    CRUDDAO productDAO=new ProductDAOImpl();
 
 
 
@@ -52,7 +53,7 @@ public class ManageProductFormController {
         int availability=Integer.parseInt(txtAvailabilty.getText());
 
         Product product = new Product(productId,productName,price,description,availability);
-                            boolean isAdded= productDAO.AddProduct(product);
+                            boolean isAdded= productDAO.add(product);
                             if (isAdded){
                                 new Alert(Alert.AlertType.CONFIRMATION, "Product Added!").show();
                             }else {
@@ -99,7 +100,7 @@ public class ManageProductFormController {
     }
 
     public void btnProductSearchOnAction(ActionEvent actionEvent) {
-        Product product= productDAO.searchProduct(txtProductId.getText());
+        Product product= (Product) productDAO.search(txtProductId.getText());
         if (product==null){
             new Alert(Alert.AlertType.INFORMATION,"Product Not Found").show();
         }else {
@@ -127,7 +128,7 @@ public class ManageProductFormController {
         int availability=Integer.parseInt(txtAvailabilty.getText());
 
         Product product = new Product(productId,productName,price,description,availability);
-                            boolean isUpdated=  productDAO.updateProduct(product);
+                            boolean isUpdated=  productDAO.update(product);
                             if (isUpdated){
                                 new Alert(Alert.AlertType.INFORMATION,"Product Updated Sucessfully").show();
                             }else {
@@ -180,7 +181,7 @@ public class ManageProductFormController {
     }
 
     public void btnDeleteProductOnAction(ActionEvent actionEvent) {
-        boolean isDeleted=   productDAO.deleteProduct(txtProductId.getText());
+        boolean isDeleted=   productDAO.delete(txtProductId.getText());
         if (isDeleted){
             new Alert(Alert.AlertType.INFORMATION,"Product  Deleted Successfully!").show();
 

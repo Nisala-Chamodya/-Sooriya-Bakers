@@ -1,14 +1,17 @@
 package lk.blacky.bakerymanagement.dao;
 
+import lk.blacky.bakerymanagement.dao.custom.impl.CRUDDAO;
 import lk.blacky.bakerymanagement.dao.custom.impl.EmployeeDAO;
+import lk.blacky.bakerymanagement.to.Customer;
 import lk.blacky.bakerymanagement.to.Employee;
 import lk.blacky.bakerymanagement.util.CRUDUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class EmployeeDAOImpl implements EmployeeDAO {
-    public  boolean addEmployee(Employee employee) {
+public class EmployeeDAOImpl implements CRUDDAO<Employee,String> {
+
+     public  boolean add(Employee employee) {
         String sql = "INSERT INTO employee VALUES (?, ?, ?, ?,?,?,?,?)";
         try {
             return CRUDUtil.execute(sql, employee.getEmpId(), employee.getName(), employee.getGender(),
@@ -21,7 +24,31 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 return false;
     }
 
-    public  Employee searchEmployee(String empId) {
+
+
+    public  boolean update(Employee employee) {
+        String sql = "UPDATE employee SET name=?,gender=?,devition=?,salary=?,tp_no=?,e_mail=?,dob=? WHERE  emp_id=? ";
+        try {
+            return CRUDUtil.execute(sql, employee.getName(), employee.getGender(),
+
+                    employee.getDivision(), employee.getSalary(),employee.getTpNo(),
+                    employee.getEmail(),employee.getDate(),employee.getEmpId());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return false;
+
+    }
+
+
+
+
+
+
+
+    public  Employee search(String empId) {
         String sql = "SELECT * FROM employee WHERE  emp_id=? ";
         ResultSet resultSet = null;
         try {
@@ -58,23 +85,9 @@ return false;
         return null;
     }
 
-    public  boolean updateEmployee(Employee employee) {
-        String sql = "UPDATE employee SET name=?,gender=?,devition=?,salary=?,tp_no=?,e_mail=?,dob=? WHERE  emp_id=? ";
-        try {
-            return CRUDUtil.execute(sql, employee.getName(), employee.getGender(),
 
-                    employee.getDivision(), employee.getSalary(),employee.getTpNo(),
-                    employee.getEmail(),employee.getDate(),employee.getEmpId());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return false;
 
-    }
-
-    public  boolean deleteEmployee(String empId)  {
+    public  boolean delete(String empId)  {
 
         String sql = "DELETE FROM employee WHERE emp_id=? ";
         try {

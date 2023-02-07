@@ -6,6 +6,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.blacky.bakerymanagement.dao.SupplierDAOImpl;
+import lk.blacky.bakerymanagement.dao.custom.impl.CRUDDAO;
 import lk.blacky.bakerymanagement.dao.custom.impl.SupplierDAO;
 import lk.blacky.bakerymanagement.model.SupplierModel;
 import lk.blacky.bakerymanagement.to.Supplier;
@@ -27,7 +28,7 @@ public class ManageSupplierDetailsFormController {
     public JFXTextField txtEmail;
 
     // Dependancy Injection
-    SupplierDAO supplierDAO=new SupplierDAOImpl();
+    CRUDDAO supplierDAO=new SupplierDAOImpl();
 
 
     public void backImgClickOnAction(MouseEvent mouseEvent) throws IOException {
@@ -51,7 +52,7 @@ public class ManageSupplierDetailsFormController {
         Supplier supplier=new Supplier(supplierId,name,address,tpNo,eMail);
 
 
-                            boolean isAdded = supplierDAO.AddSupplier(supplier);
+                            boolean isAdded = supplierDAO.add(supplier);
                             if (isAdded){
                                 new Alert(Alert.AlertType.CONFIRMATION, "Supplier Added!").show();
                             }else {
@@ -84,7 +85,7 @@ public class ManageSupplierDetailsFormController {
 
     public void btnSearchSupplierOnAction(ActionEvent actionEvent) {
 
-        Supplier supplier= supplierDAO.searchSupplier(txtSupplierId.getText());
+        Supplier supplier= (Supplier) supplierDAO.search(txtSupplierId.getText());
         if (supplier==null){
             new Alert(Alert.AlertType.INFORMATION,"Supplier Not Found").show();
         }else {
@@ -110,7 +111,7 @@ public class ManageSupplierDetailsFormController {
     public void btnDeleteSupplierOnAction(ActionEvent actionEvent) {
 
 
-        boolean isDeleted = supplierDAO.deleteSupplier(txtSupplierId.getText());
+        boolean isDeleted = supplierDAO.delete(txtSupplierId.getText());
         if (isDeleted){
             new Alert(Alert.AlertType.INFORMATION,"Supplier  Deleted Successfully!").show();
 
@@ -136,7 +137,7 @@ public class ManageSupplierDetailsFormController {
 
         Supplier supplier=new Supplier(supplierId,name,address,tpNo,eMail);
 
-                            boolean isUpdated=  supplierDAO.updateSupplier(supplier);
+                            boolean isUpdated=  supplierDAO.update(supplier);
                             if (isUpdated){
                                 new Alert(Alert.AlertType.INFORMATION,"Supplier Updated Sucessfully").show();
                             }else {
