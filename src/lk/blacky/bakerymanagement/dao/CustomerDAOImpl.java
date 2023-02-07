@@ -1,5 +1,6 @@
 package lk.blacky.bakerymanagement.dao;
 
+import lk.blacky.bakerymanagement.dao.custom.impl.CRUDDAO;
 import lk.blacky.bakerymanagement.dao.custom.impl.CustomerDAO;
 import lk.blacky.bakerymanagement.to.Customer;
 import lk.blacky.bakerymanagement.to.Employee;
@@ -9,14 +10,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 //customer dao
-public class  CustomerDAOImpl implements CustomerDAO {
+public class  CustomerDAOImpl implements CRUDDAO<Customer,String> {
 
-     public CustomerDAOImpl(){}
+
+
+      public CustomerDAOImpl(){}
 
     public CustomerDAOImpl(String text) {
     }
 
-    public  boolean AddCustomer(Customer customer) {
+    public  boolean Add(Customer customer) {
         String sql = "INSERT INTO Customer VALUES (?, ?, ?, ?,?)";
         try {
             return CRUDUtil.execute(sql, customer.getCustId(), customer.getName(), customer.getNic(), customer.getAddress(), customer.getTpNo());
@@ -28,7 +31,7 @@ public class  CustomerDAOImpl implements CustomerDAO {
         return false;
     }
 
-    public  boolean updateCustomer(Customer customer) {
+    public  boolean update(Customer customer) {
         String sql = "UPDATE Customer SET name=?,nic=?,address=?,tp_no=? WHERE  cust_id=? ";
         try {
             return CRUDUtil.execute(sql, customer.getName(), customer.getNic(), customer.getAddress(), customer.getTpNo(), customer.getCustId());
@@ -40,7 +43,7 @@ public class  CustomerDAOImpl implements CustomerDAO {
 return false;
     }
 
-    public  Customer searchCustomer(String custId) {
+    public  Customer search(String custId) {
 
         String sql = "SELECT * FROM customer WHERE  cust_id=? ";
         ResultSet resultSet = null;
@@ -72,7 +75,7 @@ return false;
         return null;
     }
 
-    public  boolean deleteCustomer(String custId) {
+    public  boolean delete(String custId) {
         String sql = "DELETE FROM customer WHERE cust_id=? ";
         try {
             return CRUDUtil.execute(sql, custId);

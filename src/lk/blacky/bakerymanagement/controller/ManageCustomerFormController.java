@@ -8,6 +8,7 @@
         import javafx.scene.input.MouseEvent;
         import javafx.scene.layout.AnchorPane;
         import lk.blacky.bakerymanagement.dao.CustomerDAOImpl;
+        import lk.blacky.bakerymanagement.dao.custom.impl.CRUDDAO;
         import lk.blacky.bakerymanagement.dao.custom.impl.CustomerDAO;
         import lk.blacky.bakerymanagement.to.Customer;
         import lk.blacky.bakerymanagement.util.Navigation;
@@ -26,7 +27,7 @@ public class ManageCustomerFormController {
     public JFXTextField txtAddress;
     public JFXTextField txtTpNo;
     //Dipendancy Injection
-    CustomerDAO customerDAO = new CustomerDAOImpl() ;
+      CRUDDAO customerDAO=new CustomerDAOImpl() ;
 
         public void backImgOnClickAction(MouseEvent mouseEvent) throws IOException {
             Navigation.navigate(Routes.ADMINDASHBOARD, pane);
@@ -49,7 +50,7 @@ public class ManageCustomerFormController {
                                 Customer customer = new Customer(custId, name, nic, address, tpNo);
 
 
-                                boolean isAdded = customerDAO.AddCustomer(customer);
+                                boolean isAdded = customerDAO.Add(customer);
                                 if (isAdded) {
                                     new Alert(Alert.AlertType.CONFIRMATION, "Customer Added!").show();
                                 } else {
@@ -106,7 +107,7 @@ public class ManageCustomerFormController {
                                 String tpNo = txtTpNo.getText();
 
                                 Customer customer = new Customer(custId, name, nic, address, tpNo);
-                                boolean isUpdated = customerDAO.updateCustomer(customer);
+                                boolean isUpdated = customerDAO.update(customer);
                                 if (isUpdated) {
                                     new Alert(Alert.AlertType.INFORMATION, "Customer Updated Sucessfully").show();
                                 } else {
@@ -141,7 +142,7 @@ public class ManageCustomerFormController {
         }
 
         public void btnSearchCustomerOnAction(ActionEvent actionEvent) {
-            Customer customer = customerDAO.searchCustomer(txtCustId.getText());
+            Customer customer = customerDAO.search(txtCustId.getText());
             if (customer == null) {
                 new Alert(Alert.AlertType.INFORMATION, "Customer Not Found").show();
             } else {
@@ -154,7 +155,7 @@ public class ManageCustomerFormController {
         }
 
         public void btnCustomerDeleteOnAction(ActionEvent actionEvent) {
-            boolean isDeleted = customerDAO.deleteCustomer(txtCustId.getText());
+            boolean isDeleted = customerDAO.delete(txtCustId.getText());
             if (isDeleted) {
                 new Alert(Alert.AlertType.INFORMATION, "Customer  Deleted Successfully!").show();
 
