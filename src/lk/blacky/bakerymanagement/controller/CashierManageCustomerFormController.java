@@ -6,14 +6,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.blacky.bakerymanagement.dao.CustomerDAOImpl;
-import lk.blacky.bakerymanagement.dao.custom.impl.CashierDAO;
 import lk.blacky.bakerymanagement.dao.custom.impl.CustomerDAO;
 import lk.blacky.bakerymanagement.to.Customer;
 import lk.blacky.bakerymanagement.util.Navigation;
 import lk.blacky.bakerymanagement.util.Routes;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 import static lk.blacky.bakerymanagement.util.Validator.*;
 
@@ -27,7 +25,7 @@ public class CashierManageCustomerFormController {
 
 
 //Dipendancy Injection
-    CustomerDAO customerDAO=new CustomerDAOImpl();
+    CustomerDAO customerDAO= (CustomerDAO) new CustomerDAOImpl();
 
     public void backImgOnClickAction(MouseEvent mouseEvent) throws IOException {
         Navigation.navigate(Routes.CASHIERDASHBOARD,pane);

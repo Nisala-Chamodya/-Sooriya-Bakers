@@ -14,7 +14,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 
-public class WelcomeController {
+public class        WelcomeController {
     public AnchorPane pane;
 
     public void btnStartOnAction(ActionEvent actionEvent) throws IOException {

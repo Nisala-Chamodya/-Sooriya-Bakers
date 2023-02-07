@@ -12,7 +12,6 @@ import lk.blacky.bakerymanagement.util.Navigation;
 import lk.blacky.bakerymanagement.util.Routes;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 import static lk.blacky.bakerymanagement.util.Validator.*;
 

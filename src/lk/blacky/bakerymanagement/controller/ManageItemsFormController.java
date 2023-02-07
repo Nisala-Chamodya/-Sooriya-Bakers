@@ -6,6 +6,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.blacky.bakerymanagement.dao.ItemDAOImpl;
+import lk.blacky.bakerymanagement.dao.custom.impl.ItemDAO;
 import lk.blacky.bakerymanagement.model.ItemModel;
 import lk.blacky.bakerymanagement.to.Item;
 import lk.blacky.bakerymanagement.util.Navigation;
@@ -23,7 +24,9 @@ public class ManageItemsFormController {
     public JFXTextField txtBrand;
     public JFXTextField txtDescription;
     public JFXTextField txtAvailability;
+    //Dependancy Injection
 
+    ItemDAO itemDAO=new ItemDAOImpl();
     public void backImgOnClickAction(MouseEvent mouseEvent) throws IOException {
         Navigation.navigate(Routes.CHEIFCOOKDASHBOARD,pane);
     }
@@ -41,18 +44,12 @@ public class ManageItemsFormController {
 
             Item item = new Item(itemId, brand, description, availability);
 
-            try {
-                boolean isAdded = ItemDAOImpl.AddItem(item);
-                if (isAdded) {
-                    new Alert(Alert.AlertType.CONFIRMATION, "Item Added!").show();
-                } else {
-                    new Alert(Alert.AlertType.WARNING, "Something happened!").show();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
+                        boolean isAdded = itemDAO.AddItem(item);
+                        if (isAdded) {
+                            new Alert(Alert.AlertType.CONFIRMATION, "Item Added!").show();
+                        } else {
+                            new Alert(Alert.AlertType.WARNING, "Something happened!").show();
+                        }
                     }else {
                         new Alert(Alert.AlertType.ERROR, "Please Enter Valid Number").show();
                         txtAvailability.setStyle("-jfx-unfocus-color : red");
@@ -79,22 +76,15 @@ public class ManageItemsFormController {
     }
 
     public void btnSearchItemOnAction(ActionEvent actionEvent) {
-        try {
-            Item item= ItemDAOImpl.searchItem(txtItemId.getText());
-            if (item==null){
-                new Alert(Alert.AlertType.INFORMATION,"Item Not Found").show();
-            }else {
-                txtBrand.setText(item.getBrand());
-                txtDescription.setText(item.getDescription());
-                txtAvailability.setText(String.valueOf(item.getAvailability()));
+        Item item= itemDAO.searchItem(txtItemId.getText());
+        if (item==null){
+            new Alert(Alert.AlertType.INFORMATION,"Item Not Found").show();
+        }else {
+            txtBrand.setText(item.getBrand());
+            txtDescription.setText(item.getDescription());
+            txtAvailability.setText(String.valueOf(item.getAvailability()));
 
 
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
 
     }
@@ -111,19 +101,13 @@ public class ManageItemsFormController {
 
 
         Item item = new Item(itemId,brand,description,availability);
-        try {
-            boolean isUpdated=  ItemDAOImpl.updateItem(item);
-            if (isUpdated){
-                new Alert(Alert.AlertType.INFORMATION,"Item Updated Successfully").show();
-            }else {
-                new Alert(Alert.AlertType.WARNING, "Something happened!").show();
-            }
+                        boolean isUpdated=  itemDAO.updateItem(item);
+                        if (isUpdated){
+                            new Alert(Alert.AlertType.INFORMATION,"Item Updated Successfully").show();
+                        }else {
+                            new Alert(Alert.AlertType.WARNING, "Something happened!").show();
+                        }
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
                     }else {
                         new Alert(Alert.AlertType.ERROR, "Please Enter Valid Number").show();
                         txtAvailability.setStyle("-jfx-unfocus-color : red");
@@ -146,20 +130,14 @@ public class ManageItemsFormController {
 
     public void btnDeleteItemOnAction(ActionEvent actionEvent) {
 
-        try {
-            boolean isDeleted=   ItemDAOImpl.deleteItem(txtItemId.getText());
-            if (isDeleted){
-                new Alert(Alert.AlertType.INFORMATION,"Item  Deleted Successfully!").show();
+        boolean isDeleted=   itemDAO.deleteItem(txtItemId.getText());
+        if (isDeleted){
+            new Alert(Alert.AlertType.INFORMATION,"Item  Deleted Successfully!").show();
 
-            }else {
-                new Alert(Alert.AlertType.WARNING, "Something happened!").show();
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        }else {
+            new Alert(Alert.AlertType.WARNING, "Something happened!").show();
         }
+
     }
 
     public void btnItemViewOnAction(ActionEvent actionEvent) throws IOException {

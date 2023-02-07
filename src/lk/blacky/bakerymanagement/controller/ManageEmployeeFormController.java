@@ -6,6 +6,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.blacky.bakerymanagement.dao.EmployeeDAOImpl;
+import lk.blacky.bakerymanagement.dao.custom.impl.EmployeeDAO;
 import lk.blacky.bakerymanagement.model.EmployeeModel;
 import lk.blacky.bakerymanagement.to.Employee;
 import lk.blacky.bakerymanagement.util.Navigation;
@@ -27,6 +28,10 @@ public class ManageEmployeeFormController {
     public JFXTextField txtGender;
     public JFXTextField txtDivision;
     public JFXTextField txtDateOfBirth;
+
+
+    //Dipendancy Injection
+    EmployeeDAO  employeeDAO=new EmployeeDAOImpl();
 
 
     public void backImgClickOnAction(MouseEvent mouseEvent) throws IOException {
@@ -58,21 +63,16 @@ public class ManageEmployeeFormController {
 
         Employee employee = new Employee(empId,name,gender,division,salary,tpNo,email,date);
 
-        try {
-            boolean isAdded = EmployeeDAOImpl.addEmployee(employee);
-            if (isAdded){
+                                        boolean isAdded = employeeDAO.addEmployee(employee);
+                                        if (isAdded){
 
-                new Alert(Alert.AlertType.CONFIRMATION, "Employee Added!").show();
+                                            new Alert(Alert.AlertType.CONFIRMATION, "Employee Added!").show();
 
-            }else {
-                new Alert(Alert.AlertType.WARNING, "Something happened!").show();
-            }
+                                        }else {
+                                            new Alert(Alert.AlertType.WARNING, "Something happened!").show();
+                                        }
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }              }else {
+                                    }else {
                                         new Alert(Alert.AlertType.ERROR, "Pleace Insert Valid Valid Date of birth \n 2002-06-20").show();
                                         txtDateOfBirth.setStyle("-jfx-unfocus-color : red");
                                     }
@@ -130,28 +130,21 @@ public class ManageEmployeeFormController {
     }
 
     public void btnSearchOnAction(ActionEvent actionEvent) {
-        try {
-            Employee employee= EmployeeDAOImpl.searchEmployee(txtEmpId.getText());
+        Employee employee= employeeDAO.searchEmployee(txtEmpId.getText());
 
-            if (employee==null){
-                new Alert(Alert.AlertType.INFORMATION,"Employee Not Found").show();
+        if (employee==null){
+            new Alert(Alert.AlertType.INFORMATION,"Employee Not Found").show();
 
 
-            }else {
-                txtName.setText(employee.getName());
-                txtGender.setText(employee.getGender());
-                txtDivision.setText(employee.getDivision());
-                txtSalary.setText(String.valueOf(employee.getSalary()));
-                txtTpNo.setText(employee.getTpNo());
-                txtEmail.setText(employee.getEmail());
-                txtDateOfBirth.setText(employee.getDate());
+        }else {
+            txtName.setText(employee.getName());
+            txtGender.setText(employee.getGender());
+            txtDivision.setText(employee.getDivision());
+            txtSalary.setText(String.valueOf(employee.getSalary()));
+            txtTpNo.setText(employee.getTpNo());
+            txtEmail.setText(employee.getEmail());
+            txtDateOfBirth.setText(employee.getDate());
 
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
 
     }
@@ -190,20 +183,14 @@ public class ManageEmployeeFormController {
 
         Employee employee = new Employee(empId,name,gender,division,salary,tpNo,email,date);
 
-        try {
-            boolean isAdded = EmployeeDAOImpl.updateEmployee(employee);
-            if (isAdded){
+                                        boolean isAdded = employeeDAO.updateEmployee(employee);
+                                        if (isAdded){
 
-                new Alert(Alert.AlertType.CONFIRMATION, "Employee Updated!").show();
+                                            new Alert(Alert.AlertType.CONFIRMATION, "Employee Updated!").show();
 
-            }else {
-                new Alert(Alert.AlertType.WARNING, "Something happened!").show();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+                                        }else {
+                                            new Alert(Alert.AlertType.WARNING, "Something happened!").show();
+                                        }
 
                                     }else {
                                         new Alert(Alert.AlertType.ERROR, "Pleace Insert Valid Valid Date of birth \n 2002-06-20").show();
@@ -253,18 +240,12 @@ public class ManageEmployeeFormController {
     public void btnDeleteEmployeeOnAction(ActionEvent actionEvent) {
 
 
-        try {
-            boolean isDeleted=   EmployeeDAOImpl.deleteEmployee(txtEmpId.getText());
-            if (isDeleted){
-                new Alert(Alert.AlertType.INFORMATION,"Employee  Deleted Successfully!").show();
+        boolean isDeleted=   employeeDAO.deleteEmployee(txtEmpId.getText());
+        if (isDeleted){
+            new Alert(Alert.AlertType.INFORMATION,"Employee  Deleted Successfully!").show();
 
-            }else {
-                new Alert(Alert.AlertType.WARNING, "Something happened!").show();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        }else {
+            new Alert(Alert.AlertType.WARNING, "Something happened!").show();
         }
     }
 

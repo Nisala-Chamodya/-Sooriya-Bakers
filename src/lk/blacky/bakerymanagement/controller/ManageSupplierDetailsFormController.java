@@ -6,6 +6,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.blacky.bakerymanagement.dao.SupplierDAOImpl;
+import lk.blacky.bakerymanagement.dao.custom.impl.SupplierDAO;
 import lk.blacky.bakerymanagement.model.SupplierModel;
 import lk.blacky.bakerymanagement.to.Supplier;
 import lk.blacky.bakerymanagement.util.Navigation;
@@ -24,6 +25,10 @@ public class ManageSupplierDetailsFormController {
     public JFXTextField txtAddress;
     public JFXTextField txtTpNo;
     public JFXTextField txtEmail;
+
+    // Dependancy Injection
+    SupplierDAO supplierDAO=new SupplierDAOImpl();
+
 
     public void backImgClickOnAction(MouseEvent mouseEvent) throws IOException {
         Navigation.navigate(Routes.ADMINDASHBOARD,pane);
@@ -46,21 +51,14 @@ public class ManageSupplierDetailsFormController {
         Supplier supplier=new Supplier(supplierId,name,address,tpNo,eMail);
 
 
-        try {
-            boolean isAdded = SupplierDAOImpl.AddSupplier(supplier);
-            if (isAdded){
-                new Alert(Alert.AlertType.CONFIRMATION, "Supplier Added!").show();
-            }else {
-                new Alert(Alert.AlertType.WARNING, "Something happened!").show();
-            }
+                            boolean isAdded = supplierDAO.AddSupplier(supplier);
+                            if (isAdded){
+                                new Alert(Alert.AlertType.CONFIRMATION, "Supplier Added!").show();
+                            }else {
+                                new Alert(Alert.AlertType.WARNING, "Something happened!").show();
+                            }
 
 
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
                         }else {
                             new Alert(Alert.AlertType.ERROR, "Please Enter the Valid Email Address \n backy2002@gamil.com").show();
                             txtEmail.setStyle("-jfx-unfocus-color : red");
@@ -86,26 +84,19 @@ public class ManageSupplierDetailsFormController {
 
     public void btnSearchSupplierOnAction(ActionEvent actionEvent) {
 
-        try {
-            Supplier supplier= SupplierDAOImpl.searchSupplier(txtSupplierId.getText());
-            if (supplier==null){
-                new Alert(Alert.AlertType.INFORMATION,"Supplier Not Found").show();
-            }else {
+        Supplier supplier= supplierDAO.searchSupplier(txtSupplierId.getText());
+        if (supplier==null){
+            new Alert(Alert.AlertType.INFORMATION,"Supplier Not Found").show();
+        }else {
 
 
-                txtName.setText(supplier.getName());
-                txtAddress.setText(supplier.getAddress());
-                txtTpNo.setText(supplier.getTpNo());
-                txtEmail.setText(supplier.geteMail());
-            }
-
-
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            txtName.setText(supplier.getName());
+            txtAddress.setText(supplier.getAddress());
+            txtTpNo.setText(supplier.getTpNo());
+            txtEmail.setText(supplier.geteMail());
         }
+
+
     }
 
     public void btnClearSupplierOnAction(ActionEvent actionEvent) {
@@ -119,20 +110,13 @@ public class ManageSupplierDetailsFormController {
     public void btnDeleteSupplierOnAction(ActionEvent actionEvent) {
 
 
-        try {
-           boolean isDeleted = SupplierDAOImpl.deleteSupplier(txtSupplierId.getText());
-            if (isDeleted){
-                new Alert(Alert.AlertType.INFORMATION,"Supplier  Deleted Successfully!").show();
+        boolean isDeleted = supplierDAO.deleteSupplier(txtSupplierId.getText());
+        if (isDeleted){
+            new Alert(Alert.AlertType.INFORMATION,"Supplier  Deleted Successfully!").show();
 
-            }else {
+        }else {
 
-                new Alert(Alert.AlertType.WARNING, "Something happened!").show();
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            new Alert(Alert.AlertType.WARNING, "Something happened!").show();
         }
 
     }
@@ -152,19 +136,13 @@ public class ManageSupplierDetailsFormController {
 
         Supplier supplier=new Supplier(supplierId,name,address,tpNo,eMail);
 
-        try {
-            boolean isUpdated=  SupplierDAOImpl.updateSupplier(supplier);
-            if (isUpdated){
-                new Alert(Alert.AlertType.INFORMATION,"Supplier Updated Sucessfully").show();
-            }else {
-                new Alert(Alert.AlertType.WARNING, "Something happened!").show();
-            }
+                            boolean isUpdated=  supplierDAO.updateSupplier(supplier);
+                            if (isUpdated){
+                                new Alert(Alert.AlertType.INFORMATION,"Supplier Updated Sucessfully").show();
+                            }else {
+                                new Alert(Alert.AlertType.WARNING, "Something happened!").show();
+                            }
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
                         }else {
                             new Alert(Alert.AlertType.ERROR, "Please Enter the Valid Email Address \n backy2002@gmil.com").show();
                             txtEmail.setStyle("-jfx-unfocus-color : red");

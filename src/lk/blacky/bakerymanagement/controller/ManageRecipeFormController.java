@@ -7,6 +7,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.blacky.bakerymanagement.dao.RecipeDAOImpl;
+import lk.blacky.bakerymanagement.dao.custom.impl.RecipeDAO;
 import lk.blacky.bakerymanagement.model.ProductModel;
 import lk.blacky.bakerymanagement.model.RecipeModel;
 import lk.blacky.bakerymanagement.to.Product;
@@ -24,6 +25,10 @@ public class ManageRecipeFormController {
     public JFXTextField txtRecipeId;
     public JFXTextField txtName;
     public JFXTextArea txtDescription;
+
+    // Dependancy Injection
+
+    RecipeDAO recipeDAO=new RecipeDAOImpl();
 
     public void backImgClickOnAction(MouseEvent mouseEvent) throws IOException {
         Navigation.navigate(Routes.CHEIFCOOKDASHBOARD,pane);
@@ -45,18 +50,12 @@ public class ManageRecipeFormController {
             Recipe recipe = new Recipe(recipeId, foodName, description);
 
 
-            try {
-                boolean isAdded = RecipeDAOImpl.addRecipe(recipe);
+                boolean isAdded = recipeDAO.addRecipe(recipe);
                 if (isAdded) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Recipe Added!").show();
                 } else {
                     new Alert(Alert.AlertType.WARNING, "Something happened!").show();
                 }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
 
 
             }else {
@@ -79,22 +78,14 @@ public class ManageRecipeFormController {
     }
 
     public void btnSearchRecipeOnAction(ActionEvent actionEvent) {
-        try {
-            Recipe recipe= RecipeDAOImpl.searchRecipe(txtRecipeId.getText());
-            if (recipe==null){
-                new Alert(Alert.AlertType.INFORMATION,"Recipe Not Found").show();
-            }else {
-                txtName.setText(recipe.getFoodName());
-                txtDescription.setText(recipe.getDescription());
+        Recipe recipe= recipeDAO.searchRecipe(txtRecipeId.getText());
+        if (recipe==null){
+            new Alert(Alert.AlertType.INFORMATION,"Recipe Not Found").show();
+        }else {
+            txtName.setText(recipe.getFoodName());
+            txtDescription.setText(recipe.getDescription());
 
 
-            }
-
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
 
 
@@ -110,20 +101,13 @@ public class ManageRecipeFormController {
 
                 Recipe recipe = new Recipe(recipeId, foodName, description);
 
-                try {
-                    boolean isUpdated = RecipeDAOImpl.updateRecipe(recipe);
-                    if (isUpdated) {
-                        new Alert(Alert.AlertType.INFORMATION, "Recipe Updated Successfully").show();
-                    } else {
-                        new Alert(Alert.AlertType.WARNING, "Something happened!").show();
-                    }
-
-
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
+                boolean isUpdated = recipeDAO.updateRecipe(recipe);
+                if (isUpdated) {
+                    new Alert(Alert.AlertType.INFORMATION, "Recipe Updated Successfully").show();
+                } else {
+                    new Alert(Alert.AlertType.WARNING, "Something happened!").show();
                 }
+
 
             }else {
                 new Alert(Alert.AlertType.ERROR, "Pleace Insert Valid Name").show();
@@ -137,21 +121,13 @@ public class ManageRecipeFormController {
     }
 
     public void btnDeleteRecipeOnAction(ActionEvent actionEvent) {
-        try {
-            boolean isDeleted=   RecipeDAOImpl.deleteRecipe(txtRecipeId.getText());
-            if (isDeleted){
-                new Alert(Alert.AlertType.INFORMATION,"Recipe  Deleted Successfully!").show();
+        boolean isDeleted=   recipeDAO.deleteRecipe(txtRecipeId.getText());
+        if (isDeleted){
+            new Alert(Alert.AlertType.INFORMATION,"Recipe  Deleted Successfully!").show();
 
 
-            }else {
-                new Alert(Alert.AlertType.WARNING, "Something happened!").show();
-            }
-
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        }else {
+            new Alert(Alert.AlertType.WARNING, "Something happened!").show();
         }
 
 

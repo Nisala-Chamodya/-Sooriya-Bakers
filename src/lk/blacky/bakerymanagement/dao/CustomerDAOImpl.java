@@ -1,21 +1,17 @@
 package lk.blacky.bakerymanagement.dao;
 
 import lk.blacky.bakerymanagement.dao.custom.impl.CustomerDAO;
-import lk.blacky.bakerymanagement.db.DBConnection;
 import lk.blacky.bakerymanagement.to.Customer;
-import lk.blacky.bakerymanagement.to.Customer;
+import lk.blacky.bakerymanagement.to.Employee;
 import lk.blacky.bakerymanagement.util.CRUDUtil;
-import lk.blacky.bakerymanagement.view.tm.CustomerTm;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 //customer dao
 public class  CustomerDAOImpl implements CustomerDAO {
-    public CustomerDAOImpl(){}
+
+     public CustomerDAOImpl(){}
 
     public CustomerDAOImpl(String text) {
     }
@@ -87,7 +83,6 @@ return false;
         }
     return false;
     }
-
 
 
 

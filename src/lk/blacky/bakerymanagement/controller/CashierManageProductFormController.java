@@ -1,6 +1,5 @@
 package lk.blacky.bakerymanagement.controller;
 
-import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
@@ -8,13 +7,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.blacky.bakerymanagement.dao.ProductDAOImpl;
 import lk.blacky.bakerymanagement.dao.custom.impl.ProductDAO;
-import lk.blacky.bakerymanagement.model.ProductModel;
 import lk.blacky.bakerymanagement.to.Product;
 import lk.blacky.bakerymanagement.util.Navigation;
 import lk.blacky.bakerymanagement.util.Routes;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 import static lk.blacky.bakerymanagement.util.Validator.*;
 
