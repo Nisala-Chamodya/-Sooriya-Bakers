@@ -1,6 +1,6 @@
 package lk.blacky.bakerymanagement.dao;
 
-import lk.blacky.bakerymanagement.dao.custom.impl.CheifCookDAO;
+import lk.blacky.bakerymanagement.dao.custom.CheifCookDAO;
 import lk.blacky.bakerymanagement.to.CheifCook;
 import lk.blacky.bakerymanagement.util.CRUDUtil;
 

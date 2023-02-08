@@ -1,7 +1,4 @@
-package lk.blacky.bakerymanagement.dao.custom.impl;
-
-import lk.blacky.bakerymanagement.to.Customer;
-import lk.blacky.bakerymanagement.to.Employee;
+package lk.blacky.bakerymanagement.dao.custom;
 
 public interface  CRUDDAO <T,ID> extends SuperDAO{
     boolean add(T dto);

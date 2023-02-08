@@ -1,6 +1,6 @@
 package lk.blacky.bakerymanagement.dao;
 
-import lk.blacky.bakerymanagement.dao.custom.impl.CashierDAO;
+import lk.blacky.bakerymanagement.dao.custom.CashierDAO;
 import lk.blacky.bakerymanagement.to.Cashier;
 import lk.blacky.bakerymanagement.util.CRUDUtil;
 

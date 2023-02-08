@@ -7,8 +7,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.blacky.bakerymanagement.dao.CheifCookDAOImpl;
-import lk.blacky.bakerymanagement.dao.custom.impl.CheifCookDAO;
-import lk.blacky.bakerymanagement.model.CheifCookModel;
+import lk.blacky.bakerymanagement.dao.custom.CheifCookDAO;
 import lk.blacky.bakerymanagement.to.CheifCook;
 import lk.blacky.bakerymanagement.util.Navigation;
 import lk.blacky.bakerymanagement.util.Routes;
@@ -17,7 +16,6 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.sql.SQLException;
 
 import static lk.blacky.bakerymanagement.util.Validator.isPasswordMatcher;
 

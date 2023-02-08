@@ -6,15 +6,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.blacky.bakerymanagement.dao.SupplierDAOImpl;
-import lk.blacky.bakerymanagement.dao.custom.impl.CRUDDAO;
-import lk.blacky.bakerymanagement.dao.custom.impl.SupplierDAO;
-import lk.blacky.bakerymanagement.model.SupplierModel;
+import lk.blacky.bakerymanagement.dao.custom.CRUDDAO;
 import lk.blacky.bakerymanagement.to.Supplier;
 import lk.blacky.bakerymanagement.util.Navigation;
 import lk.blacky.bakerymanagement.util.Routes;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 import static lk.blacky.bakerymanagement.util.Validator.*;
 

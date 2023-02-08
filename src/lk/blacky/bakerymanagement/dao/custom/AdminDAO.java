@@ -1,4 +1,4 @@
-package lk.blacky.bakerymanagement.dao.custom.impl;
+package lk.blacky.bakerymanagement.dao.custom;
 
 import lk.blacky.bakerymanagement.db.DBConnection;
 import lk.blacky.bakerymanagement.to.Admin;

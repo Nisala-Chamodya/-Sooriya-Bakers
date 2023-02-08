@@ -1,8 +1,6 @@
 package lk.blacky.bakerymanagement.dao;
 
-import lk.blacky.bakerymanagement.dao.custom.impl.CRUDDAO;
-import lk.blacky.bakerymanagement.dao.custom.impl.ProductDAO;
-import lk.blacky.bakerymanagement.to.Employee;
+import lk.blacky.bakerymanagement.dao.custom.CRUDDAO;
 import lk.blacky.bakerymanagement.to.Product;
 import lk.blacky.bakerymanagement.util.CRUDUtil;
 

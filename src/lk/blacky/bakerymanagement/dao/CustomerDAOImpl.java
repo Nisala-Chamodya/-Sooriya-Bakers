@@ -1,9 +1,7 @@
 package lk.blacky.bakerymanagement.dao;
 
-import lk.blacky.bakerymanagement.dao.custom.impl.CRUDDAO;
-import lk.blacky.bakerymanagement.dao.custom.impl.CustomerDAO;
+import lk.blacky.bakerymanagement.dao.custom.CRUDDAO;
 import lk.blacky.bakerymanagement.to.Customer;
-import lk.blacky.bakerymanagement.to.Employee;
 import lk.blacky.bakerymanagement.util.CRUDUtil;
 
 import java.sql.ResultSet;

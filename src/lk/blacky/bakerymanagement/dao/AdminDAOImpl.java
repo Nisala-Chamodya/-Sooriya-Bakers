@@ -1,6 +1,6 @@
 package lk.blacky.bakerymanagement.dao;
 
-import lk.blacky.bakerymanagement.dao.custom.impl.AdminDAO;
+import lk.blacky.bakerymanagement.dao.custom.AdminDAO;
 import lk.blacky.bakerymanagement.db.DBConnection;
 import lk.blacky.bakerymanagement.to.Admin;
 import lk.blacky.bakerymanagement.util.CRUDUtil;
@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class AdminDAOImpl implements AdminDAO {
+public class AdminDAOImpl implements AdminDAO  {
     public  boolean addAdmin(Admin admin)  {
         String sql = "INSERT INTO admin VALUES (?, ?)";
         try {
