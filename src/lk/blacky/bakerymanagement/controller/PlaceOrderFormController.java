@@ -13,7 +13,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
+import lk.blacky.bakerymanagement.dao.custom.PlaceOrderDAO;
+import lk.blacky.bakerymanagement.dao.custom.impl.PlaceOrderDAOImpl;
 import lk.blacky.bakerymanagement.db.DBConnection;
+import lk.blacky.bakerymanagement.dto.CustomerDTO;
 import lk.blacky.bakerymanagement.model.Order;
 import lk.blacky.bakerymanagement.model.OrderModel;
 import lk.blacky.bakerymanagement.model.ProductDetails;
@@ -67,10 +70,8 @@ public class PlaceOrderFormController {
     public TableColumn colOption;
     public Label txtTotal;
     public JFXTextField txtCashierName;
-
-
-
-
+    /*dipendancy Injection*/
+    public PlaceOrderDAO placeOrderDAO = new PlaceOrderDAOImpl();
 
 
     public void initialize() {
@@ -110,13 +111,13 @@ public class PlaceOrderFormController {
 
     private void genarateOrderId() {
         try {
-            String lastOrderId= OrderModel.getLastOrderId();
-            if (lastOrderId != null ){
-                lastOrderId=lastOrderId.split("[A-Z]")[1];
+            String lastOrderId = OrderModel.getLastOrderId();
+            if (lastOrderId != null) {
+                lastOrderId = lastOrderId.split("[A-Z]")[1];
                 System.out.println(lastOrderId);
-                lastOrderId=String.format("D%03d",(Integer.parseInt(lastOrderId)+1));
+                lastOrderId = String.format("D%03d", (Integer.parseInt(lastOrderId) + 1));
                 txtOrderId.setText(lastOrderId);
-            }else {
+            } else {
                 txtOrderId.setText("D001");
             }
 
@@ -132,43 +133,45 @@ public class PlaceOrderFormController {
 
 
     private void loadAllProductId() {
+
+//            Connection connection1 = DBConnection.getInstance().getConnection();
+//            String sql = "SELECT product_id FROM product ";
+//            PreparedStatement statement1 = connection1.prepareStatement(sql);
+//            ResultSet resultSet = CRUDUtil.execute(sql);
+//            ArrayList<String> productIdList = new ArrayList<>();
+//            while (resultSet.next()) {
+//                productIdList.add(resultSet.getString(1));
         try {
-            Connection connection1 = DBConnection.getInstance().getConnection();
-            String sql = "SELECT product_id FROM product ";
-            PreparedStatement statement1 = connection1.prepareStatement(sql);
-            ResultSet resultSet = CRUDUtil.execute(sql);
-            ArrayList<String> productIdList = new ArrayList<>();
-            while (resultSet.next()) {
-                productIdList.add(resultSet.getString(1));
-            }
-            ObservableList<String> obList = FXCollections.observableArrayList(productIdList);
+            ArrayList<String> list = placeOrderDAO.loadAllProductIds();
+            ObservableList<String> obList = FXCollections.observableArrayList(list);
             cmbProductId.setItems(obList);
-
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
         }
-
-
     }
 
     private void loadAllCustomerId() {
-        try {
-            Connection connection1 = DBConnection.getInstance().getConnection();
+
+           /* Connection connection1 = DBConnection.getInstance().getConnection();
             String sql = "SELECT cust_id FROM customer ";
             PreparedStatement statement1 = connection1.prepareStatement(sql);
             ResultSet resultSet = CRUDUtil.execute(sql);
             ArrayList<String> custIdList = new ArrayList<>();
             while (resultSet.next()) {
-                custIdList.add(resultSet.getString(1));
-            }
-            ObservableList<String> obList = FXCollections.observableArrayList(custIdList);
-            cmbCustId.setItems(obList);
 
-
-        } catch (SQLException | ClassNotFoundException e) {
+                custIdList.add(resultSet.getString(1));*/
+        ArrayList<String> list = null;
+        try {
+            list = placeOrderDAO.loadAllCustomerIds();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
+        ObservableList<String> obList = FXCollections.observableArrayList(list);
+        cmbCustId.setItems(obList);
 
     }
 
@@ -221,19 +224,19 @@ public class PlaceOrderFormController {
 
     private void setCustomerDetails() {
         try {
-            Connection connection1 = DBConnection.getInstance().getConnection();
+            /*Connection connection1 = DBConnection.getInstance().getConnection();
             String sql = "SELECT * FROM customer WHERE cust_id=?";
             PreparedStatement statement1 = connection1.prepareStatement(sql);
             statement1.setObject(1, cmbCustId.getValue());
-            ResultSet resultSet = statement1.executeQuery();
+            ResultSet resultSet = statement1.executeQuery();*/
+            ArrayList<CustomerDTO> customerDTOS = new ArrayList<>();
+            customerDTOS = placeOrderDAO.setCustomerDetails(cmbCustId.getValue());
+            CustomerDTO c = customerDTOS.get(0);
 
-            if (resultSet.next()) {
-                txtCustName.setText(resultSet.getString(2));
-                txtNic.setText(resultSet.getString(3));
-                txtAddress.setText(resultSet.getString(4));
-                txtTpNo.setText(resultSet.getString(5));
-
-            }
+            txtCustName.setText(c.getName());
+            txtNic.setText(c.getNic());
+            txtAddress.setText(c.getAddress());
+            txtTpNo.setText(c.getTpNo());
 
 
         } catch (ClassNotFoundException e) {
@@ -282,6 +285,11 @@ public class PlaceOrderFormController {
     ObservableList<CartTm> obList = FXCollections.observableArrayList();
 
     public void btnAddToCartOnAction(ActionEvent actionEvent) {
+        saveTransaction();
+
+    }
+
+    public void saveTransaction() {
         if (!checkQty((String) cmbProductId.getValue(), Integer.parseInt(txtQty.getText()))) {
             new Alert(Alert.AlertType.WARNING, "Invalid Qty ").show();
             return;
@@ -339,7 +347,6 @@ public class PlaceOrderFormController {
             }
 
         });
-
 
     }
 
@@ -435,8 +442,6 @@ public class PlaceOrderFormController {
                     new Alert(Alert.AlertType.CONFIRMATION, "Order Placed!").show();
 
 
-
-
                     clearAll();
 
 
@@ -469,39 +474,35 @@ public class PlaceOrderFormController {
 
     private void printInvoice() {
 
-        String total=txtTotal.getText();
+        String total = txtTotal.getText();
 
         try {
 
-           JasperDesign jasdi= JRXmlLoader.load("C:\\Users\\NISALA CHAMODYA\\JaspersoftWorkspace\\BakeryJasperReportProject\\Invoice.jrxml");
+            JasperDesign jasdi = JRXmlLoader.load("C:\\Users\\NISALA CHAMODYA\\JaspersoftWorkspace\\BakeryJasperReportProject\\Invoice.jrxml");
 
-            String sql="SELECT * FROM  `order_details` WHERE order_id='"+txtOrderId.getText()+"'";
-            JRDesignQuery newQuery=new JRDesignQuery();
+            String sql = "SELECT * FROM  `order_details` WHERE order_id='" + txtOrderId.getText() + "'";
+            JRDesignQuery newQuery = new JRDesignQuery();
             newQuery.setText(sql);
             jasdi.setQuery(newQuery);
-            HashMap<String,Object>hm=new HashMap<>();
-            hm.put("cashierName",txtCashierName.getText());
-            hm.put("total",String.valueOf(total));
-
+            HashMap<String, Object> hm = new HashMap<>();
+            hm.put("cashierName", txtCashierName.getText());
+            hm.put("total", String.valueOf(total));
 
 
             JasperReport compileReport = JasperCompileManager.compileReport(jasdi);
-            JasperPrint jasperPrint=  JasperFillManager
-                    .fillReport(compileReport,hm, DBConnection.getInstance().getConnection());
+            JasperPrint jasperPrint = JasperFillManager
+                    .fillReport(compileReport, hm, DBConnection.getInstance().getConnection());
             //JasperPrintManager.printReport(jasperPrint,true);
             JasperViewer.viewReport(jasperPrint);
 
 
-
-
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
 
         }
 
 
     }
-
 
 
     private void clearAll() {
@@ -538,7 +539,7 @@ public class PlaceOrderFormController {
                 statement.setObject(4, d.getUnitPrice());
 
                 boolean isOrderDetailsSaved = statement.executeUpdate() > 0;
-              //  System.out.println(isOrderDetailsSaved + "oder details");
+                //  System.out.println(isOrderDetailsSaved + "oder details");
                 if (isOrderDetailsSaved) {
                     boolean isQtyUpdated = update(d);
                     System.out.println(isQtyUpdated);
@@ -569,9 +570,9 @@ public class PlaceOrderFormController {
             statement.setObject(2, d.getProductId());
 
             boolean b = statement.executeUpdate() > 0;
-            if(b){
+            if (b) {
                 return true;
-            }else{
+            } else {
                 new Alert(Alert.AlertType.ERROR, "Data update erro");
                 return false;
             }
