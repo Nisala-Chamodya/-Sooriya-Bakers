@@ -3,8 +3,6 @@ package lk.blacky.bakerymanagement.bo.custom.impl;
 import lk.blacky.bakerymanagement.dao.DAOFactory;
 import lk.blacky.bakerymanagement.dao.custom.CustomerDAO;
 import lk.blacky.bakerymanagement.dto.CustomerDTO;
-import lk.blacky.bakerymanagement.to.Customer;
-import rex.utils.S;
 
 public class CustomerBOImpl implements CustomerBO {
     //dipendancy injection
@@ -15,21 +13,21 @@ public class CustomerBOImpl implements CustomerBO {
 
     @Override
     public boolean addCustomer(CustomerDTO customer) {
-        return customerDAO.AddCustomer(new Customer(customer.getCustId(),customer.getName(),customer.getNic(),customer.getAddress(),customer.getTpNo()));
+        return customerDAO.add(new CustomerDTO(customer.getCustId(),customer.getName(),customer.getNic(),customer.getAddress(),customer.getTpNo()));
     }
 
     @Override
     public boolean updateCustomer(CustomerDTO customer) {
-        return customerDAO.updateCustomer(new Customer(customer.getCustId(),customer.getName(),customer.getNic(),customer.getAddress(),customer.getTpNo()));
+        return customerDAO.update(new CustomerDTO(customer.getCustId(),customer.getName(),customer.getNic(),customer.getAddress(),customer.getTpNo()));
     }
 
     @Override
-    public Customer searchCustomer(String custId) {
-        return customerDAO.searchCustomer(custId);
+    public CustomerDTO searchCustomer(String custId) {
+        return customerDAO.search(custId);
     }
 
     @Override
     public boolean deleteCustomer(String custId) {
-        return customerDAO.deleteCustomer(custId);
+        return customerDAO.delete(custId);
     }
 }

@@ -5,7 +5,7 @@ import lk.blacky.bakerymanagement.to.Employee;
 
 public interface EmployeeBO extends SuperBo {
     public  boolean addEmployee(EmployeeDTO employee);
-    public  Employee searchEmployee(String empId);
+    public  EmployeeDTO searchEmployee(String empId);
     public  boolean updateEmployee(EmployeeDTO employee);
 
     public  boolean deleteEmployee(String empId);

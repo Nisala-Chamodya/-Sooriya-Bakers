@@ -5,7 +5,7 @@ import lk.blacky.bakerymanagement.to.Recipe;
 
 public interface RecipeBo extends SuperBo{
     public  boolean addRecipe(RecipeDTO recipe);
-    public  Recipe searchRecipe(String recipeId);
+    public  RecipeDTO searchRecipe(String recipeId);
     public  boolean updateRecipe(RecipeDTO recipe);
     public  boolean deleteRecipe(String recipeId);
 

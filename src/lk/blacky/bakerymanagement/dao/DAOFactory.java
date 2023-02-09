@@ -1,6 +1,6 @@
 package lk.blacky.bakerymanagement.dao;
 
-import lk.blacky.bakerymanagement.dao.custom.SuperDAO;
+import lk.blacky.bakerymanagement.dao.impl.*;
 
 public class DAOFactory {
     private static DAOFactory daoFactory;

@@ -14,13 +14,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import lk.blacky.bakerymanagement.dao.custom.PlaceOrderDAO;
-import lk.blacky.bakerymanagement.dao.custom.impl.PlaceOrderDAOImpl;
+import lk.blacky.bakerymanagement.dao.impl.PlaceOrderDAOImpl;
 import lk.blacky.bakerymanagement.db.DBConnection;
 import lk.blacky.bakerymanagement.dto.CustomerDTO;
+import lk.blacky.bakerymanagement.dto.ProductDTO;
 import lk.blacky.bakerymanagement.model.Order;
 import lk.blacky.bakerymanagement.model.OrderModel;
 import lk.blacky.bakerymanagement.model.ProductDetails;
-import lk.blacky.bakerymanagement.util.CRUDUtil;
 import lk.blacky.bakerymanagement.util.Navigation;
 import lk.blacky.bakerymanagement.util.Routes;
 import lk.blacky.bakerymanagement.view.tm.CartTm;
@@ -31,7 +31,6 @@ import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -101,7 +100,13 @@ public class PlaceOrderFormController {
 
         cmbProductId.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
-                setProductDetails();
+                try {
+                    setProductDetails();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
 
         });
@@ -246,26 +251,31 @@ public class PlaceOrderFormController {
         }
     }
 
-    private void setProductDetails() {
+    private void setProductDetails() throws SQLException, ClassNotFoundException {
         try {
-            Connection connection1 = DBConnection.getInstance().getConnection();
-            PreparedStatement statement1 = connection1.prepareStatement("SELECT * FROM product WHERE product_id=?");
-            statement1.setObject(1, cmbProductId.getValue());
-            ResultSet resultSet = statement1.executeQuery();
-            if (resultSet.next()) {
-                txtProductName.setText(resultSet.getString(2));
-                txtPrice.setText(resultSet.getString(3));
-                txtDescription.setText(resultSet.getString(4));
-                txtAvailability.setText(resultSet.getString(5));
+//            Connection connection1 = DBConnection.getInstance().getConnection();
+//            PreparedStatement statement1 = connection1.prepareStatement("SELECT * FROM product WHERE product_id=?");
+//            statement1.setObject(1, cmbProductId.getValue());
+//            ResultSet resultSet = statement1.executeQuery();
+            ArrayList<ProductDTO> productDTOS = new ArrayList<>();
+            productDTOS = placeOrderDAO.setProductDetails(cmbProductId.getValue());
+            ProductDTO p = productDTOS.get(0);
+
+                txtProductName.setText(p.getProductName());
+                txtPrice.setText(p.getPrice());
+                txtDescription.setText(p.getDescription());
+                txtAvailability.setText(p.getAvailability());
 
 
-            }
+
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+
     }
 
 
@@ -403,9 +413,9 @@ public class PlaceOrderFormController {
             e.printStackTrace();
         }
         return false;
-    }
+        }
 
-    public void btnPlaceOrderOnAction(ActionEvent actionEvent) throws SQLException {
+        public void btnPlaceOrderOnAction(ActionEvent actionEvent) throws SQLException {
 
         if (obList.isEmpty()) return;
         ArrayList<ProductDetails> details = new ArrayList<>();

@@ -5,9 +5,9 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import lk.blacky.bakerymanagement.dao.CustomerDAOImpl;
+import lk.blacky.bakerymanagement.dao.impl.CustomerDAOImpl;
 import lk.blacky.bakerymanagement.dao.custom.CustomerDAO;
-import lk.blacky.bakerymanagement.to.Customer;
+import lk.blacky.bakerymanagement.dto.CustomerDTO;
 import lk.blacky.bakerymanagement.util.Navigation;
 import lk.blacky.bakerymanagement.util.Routes;
 
@@ -47,8 +47,8 @@ public class CashierManageCustomerFormController {
         String address = txtAddress.getText();
         String tpNo = txtTpNo.getText();
 
-        Customer customer = new Customer(custId, name, nic, address, tpNo);
-                            boolean isAdded = customerDAO.AddCustomer(customer);
+        CustomerDTO customer = new CustomerDTO(custId, name, nic, address, tpNo);
+                            boolean isAdded = customerDAO.add(customer);
                             if (isAdded) {
                                 new Alert(Alert.AlertType.CONFIRMATION, "Customer Added!").show();
                             } else {
@@ -106,8 +106,8 @@ public class CashierManageCustomerFormController {
                             String address=txtAddress.getText();
                             String tpNo=txtTpNo.getText();
 
-                            Customer customer=new Customer(custId,name,nic,address,tpNo);
-                            boolean isUpdated=  customerDAO.updateCustomer(customer);
+                            CustomerDTO customer=new CustomerDTO(custId,name,nic,address,tpNo);
+                            boolean isUpdated=  customerDAO.update(customer);
                             if (isUpdated){
                                 new Alert(Alert.AlertType.INFORMATION,"Customer Updated Sucessfully").show();
                             }else {
@@ -144,7 +144,7 @@ public class CashierManageCustomerFormController {
     public void btnSearchOnClickAction(ActionEvent actionEvent) {
 
 
-        Customer customer= customerDAO.searchCustomer(txtCustId.getText());
+        CustomerDTO customer= customerDAO.search(txtCustId.getText());
         if (customer==null){
             new Alert(Alert.AlertType.INFORMATION,"Customer Not Found").show();
         }else {
@@ -159,7 +159,7 @@ public class CashierManageCustomerFormController {
     public void btnDeleteOnClickAction(ActionEvent actionEvent) {
 
 
-        boolean isDeleted=   customerDAO.deleteCustomer(txtCustId.getText());
+        boolean isDeleted=   customerDAO.delete(txtCustId.getText());
         if (isDeleted){
             new Alert(Alert.AlertType.INFORMATION,"Customer  Deleted Successfully!").show();
 

@@ -6,7 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import lk.blacky.bakerymanagement.dao.CheifCookDAOImpl;
+import lk.blacky.bakerymanagement.dao.impl.CheifCookDAOImpl;
 import lk.blacky.bakerymanagement.dao.custom.CheifCookDAO;
 import lk.blacky.bakerymanagement.to.CheifCook;
 import lk.blacky.bakerymanagement.util.Navigation;

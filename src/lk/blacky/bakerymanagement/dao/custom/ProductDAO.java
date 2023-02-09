@@ -1,14 +1,15 @@
 package lk.blacky.bakerymanagement.dao.custom;
 
-import lk.blacky.bakerymanagement.to.Product;
+import lk.blacky.bakerymanagement.dao.CRUDDAO;
+import lk.blacky.bakerymanagement.dto.ProductDTO;
 
-public interface ProductDAO {
+public interface ProductDAO extends CRUDDAO<ProductDTO,String> {
 
-    public  boolean AddProduct(Product product);
-    public  Product searchProduct(String ProductId);
+  /*public  boolean AddProduct(Product product);
+    public  ProductDTO searchProduct(String ProductId);
 
     public  boolean updateProduct(Product product);
-    public  boolean deleteProduct(String productId);
+    public  boolean deleteProduct(String productId);*/
 
 
 

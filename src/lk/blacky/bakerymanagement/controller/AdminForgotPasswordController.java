@@ -6,7 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import lk.blacky.bakerymanagement.dao.AdminDAOImpl;
+import lk.blacky.bakerymanagement.dao.impl.AdminDAOImpl;
 import lk.blacky.bakerymanagement.dao.custom.AdminDAO;
 import lk.blacky.bakerymanagement.to.Admin;
 import lk.blacky.bakerymanagement.util.Navigation;

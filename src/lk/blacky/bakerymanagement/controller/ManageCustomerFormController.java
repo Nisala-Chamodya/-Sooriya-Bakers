@@ -7,8 +7,8 @@
         import javafx.scene.control.Alert;
         import javafx.scene.input.MouseEvent;
         import javafx.scene.layout.AnchorPane;
-        import lk.blacky.bakerymanagement.dao.CustomerDAOImpl;
-        import lk.blacky.bakerymanagement.dao.custom.CRUDDAO;
+        import lk.blacky.bakerymanagement.dao.impl.CustomerDAOImpl;
+        import lk.blacky.bakerymanagement.dao.CRUDDAO;
         import lk.blacky.bakerymanagement.to.Customer;
         import lk.blacky.bakerymanagement.util.Navigation;
         import lk.blacky.bakerymanagement.util.Routes;

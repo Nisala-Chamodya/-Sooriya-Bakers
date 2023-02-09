@@ -6,7 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import lk.blacky.bakerymanagement.dao.CashierDAOImpl;
+import lk.blacky.bakerymanagement.dao.impl.CashierDAOImpl;
 import lk.blacky.bakerymanagement.dao.custom.CashierDAO;
 import lk.blacky.bakerymanagement.to.Cashier;
 import lk.blacky.bakerymanagement.util.Navigation;
