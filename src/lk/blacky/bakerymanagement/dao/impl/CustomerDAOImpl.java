@@ -2,6 +2,8 @@ package lk.blacky.bakerymanagement.dao.impl;
 
 import lk.blacky.bakerymanagement.dao.custom.CustomerDAO;
 import lk.blacky.bakerymanagement.dto.CustomerDTO;
+import lk.blacky.bakerymanagement.entity.CustomEntity;
+import lk.blacky.bakerymanagement.entity.CustomerEntity;
 import lk.blacky.bakerymanagement.util.CRUDUtil;
 
 import java.sql.ResultSet;
@@ -18,10 +20,10 @@ public class  CustomerDAOImpl implements CustomerDAO {
     public CustomerDAOImpl(String text) {
     }
 
-    public  boolean add(CustomerDTO customer) {
+    public  boolean add(CustomerEntity customer) {
         String sql = "INSERT INTO Customer VALUES (?, ?, ?, ?,?)";
         try {
-            return CRUDUtil.execute(sql, customer.getCustId(), customer.getName(), customer.getNic(), customer.getAddress(), customer.getTpNo());
+            return CRUDUtil.execute(sql, customer.getCust_Id(), customer.getName(), customer.getNic(), customer.getAddress(), customer.getTpNo());
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -33,10 +35,10 @@ public class  CustomerDAOImpl implements CustomerDAO {
     @Override
 
 
-    public  boolean update(CustomerDTO customer) {
+    public  boolean update(CustomerEntity customer) {
         String sql = "UPDATE Customer SET name=?,nic=?,address=?,tp_no=? WHERE  cust_id=? ";
         try {
-            return CRUDUtil.execute(sql, customer.getName(), customer.getNic(), customer.getAddress(), customer.getTpNo(), customer.getCustId());
+            return CRUDUtil.execute(sql, customer.getName(), customer.getNic(), customer.getAddress(), customer.getTpNo(), customer.getCust_Id());
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -45,7 +47,7 @@ public class  CustomerDAOImpl implements CustomerDAO {
 return false;
     }
 
-    public  CustomerDTO search(String custId) {
+    public  CustomerEntity search(String custId) {
 
         String sql = "SELECT * FROM customer WHERE  cust_id=? ";
         ResultSet resultSet = null;
@@ -59,7 +61,7 @@ return false;
         try {
             if (resultSet.next()) {
                 try {
-                    return new CustomerDTO(
+                    return new CustomerEntity(
                             resultSet.getString(1),
                             resultSet.getString(2),
                             resultSet.getString(3),

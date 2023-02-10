@@ -13,10 +13,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
+import lk.blacky.bakerymanagement.bo.custom.impl.PlaceOrderBOImpl;
+import lk.blacky.bakerymanagement.bo.custom.impl.PlaceOrderBo;
 import lk.blacky.bakerymanagement.dao.custom.PlaceOrderDAO;
 import lk.blacky.bakerymanagement.dao.impl.PlaceOrderDAOImpl;
 import lk.blacky.bakerymanagement.db.DBConnection;
 import lk.blacky.bakerymanagement.dto.CustomerDTO;
+import lk.blacky.bakerymanagement.dto.OrderDTO;
 import lk.blacky.bakerymanagement.dto.ProductDTO;
 import lk.blacky.bakerymanagement.model.Order;
 import lk.blacky.bakerymanagement.model.OrderModel;
@@ -71,6 +74,7 @@ public class PlaceOrderFormController {
     public JFXTextField txtCashierName;
     /*dipendancy Injection*/
     public PlaceOrderDAO placeOrderDAO = new PlaceOrderDAOImpl();
+    public PlaceOrderBo placeOrderBo = new PlaceOrderBOImpl();
 
 
     public void initialize() {
@@ -261,12 +265,10 @@ public class PlaceOrderFormController {
             productDTOS = placeOrderDAO.setProductDetails(cmbProductId.getValue());
             ProductDTO p = productDTOS.get(0);
 
-                txtProductName.setText(p.getProductName());
-                txtPrice.setText(p.getPrice());
-                txtDescription.setText(p.getDescription());
-                txtAvailability.setText(p.getAvailability());
-
-
+            txtProductName.setText(p.getProductName());
+            txtPrice.setText(String.valueOf(p.getPrice()));
+            txtDescription.setText(p.getDescription());
+            txtAvailability.setText(String.valueOf(p.getAvailability()));
 
 
         } catch (ClassNotFoundException e) {
@@ -292,7 +294,7 @@ public class PlaceOrderFormController {
         Navigation.navigate(Routes.MANAGEPRODUCTWITHCASHIER, pane);
     }
 
-    ObservableList<CartTm> obList = FXCollections.observableArrayList();
+    static ObservableList<CartTm> obList = FXCollections.observableArrayList();
 
     public void btnAddToCartOnAction(ActionEvent actionEvent) {
         saveTransaction();
@@ -413,76 +415,31 @@ public class PlaceOrderFormController {
             e.printStackTrace();
         }
         return false;
-        }
+    }
 
-        public void btnPlaceOrderOnAction(ActionEvent actionEvent) throws SQLException {
+    public void btnPlaceOrderOnAction(ActionEvent actionEvent) throws SQLException {
+        OrderDTO orderDTO = new OrderDTO(
+                txtOrderId.getText(),
+                String.valueOf(LocalDate.now()),
+                Double.parseDouble(txtTotal.getText()),
+                cmbCustId.getValue().toString()
 
-        if (obList.isEmpty()) return;
-        ArrayList<ProductDetails> details = new ArrayList<>();
-        for (CartTm tm : obList) {
-            details.add(new ProductDetails(tm.getProductId(), tm.getPrice(), tm.getQty()));
-
-
-        }
-        Order order = new Order(txtOrderId.getText(), new Date(), Double.parseDouble(txtTotal.getText()),
-                cmbCustId.getValue(), details);
-
-        Connection con = null;
-
-        try {
-            con = DBConnection.getInstance().getConnection();
-            con.setAutoCommit(false);
-            PreparedStatement statement = con.prepareStatement("INSERT orders VALUES (?,?,?,?)");
-            statement.setObject(1, order.getOrderId());
-            statement.setObject(2, txtOrderDate.getText());
-            statement.setObject(3, order.getTotalCost());
-            statement.setObject(4, order.getCustomer());
-
-            boolean isOrderSaved = statement.executeUpdate() > 0;
-
-            if (isOrderSaved) {
-                boolean isAllUpdated = manageQty(details);
+        );
 
 
-                if (isAllUpdated) {
+        placeOrderBo.equals(orderDTO);
 
-                    con.commit();
-                    printInvoice();
-
-                    new Alert(Alert.AlertType.CONFIRMATION, "Order Placed!").show();
-
-
-                    clearAll();
-
-
-                } else {
-                    con.rollback();
-                    con.setAutoCommit(true);
-
-                    new Alert(Alert.AlertType.ERROR, "Is All Updated Failed").show();
-
-                }
-
-            } else {
-                con.rollback();
-                con.setAutoCommit(true);
-
-
-                new Alert(Alert.AlertType.ERROR, "Order Not Saved");
-            }
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            con.setAutoCommit(true);
-
+        boolean b = placeOrderBo.saveOrder(orderDTO, obList);
+        if (b) {
+            printInvoice();
+            new Alert(Alert.AlertType.CONFIRMATION, "Order Placed!").show();
+            clearAll();
         }
 
 
     }
 
-    private void printInvoice() {
+    public void printInvoice() {
 
         String total = txtTotal.getText();
 
@@ -515,7 +472,7 @@ public class PlaceOrderFormController {
     }
 
 
-    private void clearAll() {
+    public void clearAll() {
         obList.clear();
         calculateTotal();
         txtProductName.clear();
@@ -537,61 +494,5 @@ public class PlaceOrderFormController {
 
     }
 
-    private boolean manageQty(ArrayList<ProductDetails> details) {
 
-        try {
-            for (ProductDetails d : details) {
-                Connection connection = DBConnection.getInstance().getConnection();
-                PreparedStatement statement = connection.prepareStatement("INSERT `order_details` VALUES (?,?,?,?)");
-                statement.setObject(1, txtOrderId.getText());
-                statement.setObject(2, d.getProductId());
-                statement.setObject(3, d.getAvailability());
-                statement.setObject(4, d.getUnitPrice());
-
-                boolean isOrderDetailsSaved = statement.executeUpdate() > 0;
-                //  System.out.println(isOrderDetailsSaved + "oder details");
-                if (isOrderDetailsSaved) {
-                    boolean isQtyUpdated = update(d);
-                    System.out.println(isQtyUpdated);
-                    if (!isQtyUpdated) {
-                        return false;
-                    } else {
-                        return true;
-                    }
-                }
-
-
-            }
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return true;
-
-    }
-
-    private boolean update(ProductDetails d) {
-
-        try {
-            Connection connection = DBConnection.getInstance().getConnection();
-            PreparedStatement statement = connection.prepareStatement("UPDATE product SET availability=(availability-?) WHERE product_id=?");
-            statement.setObject(1, d.getAvailability());
-            statement.setObject(2, d.getProductId());
-
-            boolean b = statement.executeUpdate() > 0;
-            if (b) {
-                return true;
-            } else {
-                new Alert(Alert.AlertType.ERROR, "Data update erro");
-                return false;
-            }
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return false;
-    }
 }

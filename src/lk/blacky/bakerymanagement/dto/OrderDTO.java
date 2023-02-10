@@ -2,16 +2,16 @@ package lk.blacky.bakerymanagement.dto;
 
 import java.sql.Date;
 
-public class orderDTO {
+public class OrderDTO {
     private String orderID;
-    private Date date;
+    private String date;
     private double totalCost;
     private String CustomerID;
 
-    public orderDTO() {
+    public OrderDTO() {
     }
 
-    public orderDTO(String orderID, Date date, double totalCost, String customerID) {
+    public OrderDTO(String orderID, String date, double totalCost, String customerID) {
         this.orderID = orderID;
         this.date = date;
         this.totalCost = totalCost;
@@ -26,11 +26,11 @@ public class orderDTO {
         this.orderID = orderID;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -52,9 +52,9 @@ public class orderDTO {
 
     @Override
     public String toString() {
-        return "orderDTO{" +
+        return "OrderDTO{" +
                 "orderID='" + orderID + '\'' +
-                ", date=" + date +
+                ", date='" + date + '\'' +
                 ", totalCost=" + totalCost +
                 ", CustomerID='" + CustomerID + '\'' +
                 '}';

@@ -1,5 +1,7 @@
 package lk.blacky.bakerymanagement.dto;
 
+import java.sql.Date;
+
 public class EmployeeDTO {
    private String empId;
     private String name ;
@@ -8,12 +10,12 @@ public class EmployeeDTO {
     private double salary ;
     private String tpNo;
     private String email;
-    private String date;
+    private Date date;
 
     public EmployeeDTO() {
     }
 
-    public EmployeeDTO(String empId, String name, String gender, String division, double salary, String tpNo, String email, String date) {
+    public EmployeeDTO(String empId, String name, String gender, String division, double salary, String tpNo, String email, Date date) {
         this.empId = empId;
         this.name = name;
         this.gender = gender;
@@ -80,11 +82,11 @@ public class EmployeeDTO {
         this.email = email;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -98,7 +100,7 @@ public class EmployeeDTO {
                 ", salary=" + salary +
                 ", tpNo='" + tpNo + '\'' +
                 ", email='" + email + '\'' +
-                ", date='" + date + '\'' +
+                ", date=" + date +
                 '}';
     }
 }

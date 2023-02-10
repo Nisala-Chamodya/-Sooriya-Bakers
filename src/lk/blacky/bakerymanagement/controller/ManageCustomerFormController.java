@@ -14,6 +14,7 @@
         import lk.blacky.bakerymanagement.util.Routes;
 
         import java.io.IOException;
+        import java.sql.SQLException;
 
         import static lk.blacky.bakerymanagement.util.Validator.*;
 
@@ -48,7 +49,12 @@ public class ManageCustomerFormController {
                                 Customer customer = new Customer(custId, name, nic, address, tpNo);
 
 
-                                boolean isAdded = customerDAO.add(customer);
+                                boolean isAdded = false;
+                                try {
+                                    isAdded = customerDAO.add(customer);
+                                } catch (SQLException | ClassNotFoundException e) {
+                                    e.printStackTrace();
+                                }
                                 if (isAdded) {
                                     new Alert(Alert.AlertType.CONFIRMATION, "Customer Added!").show();
                                 } else {

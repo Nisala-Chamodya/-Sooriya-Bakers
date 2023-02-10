@@ -12,6 +12,7 @@ import lk.blacky.bakerymanagement.util.Navigation;
 import lk.blacky.bakerymanagement.util.Routes;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import static lk.blacky.bakerymanagement.util.Validator.*;
 
@@ -37,7 +38,7 @@ public class ManageEmployeeFormController {
 
     }
 
-    public void btnAddEmployeeOnAction(ActionEvent actionEvent) {
+    public void btnAddEmployeeOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         if(isEmployeeIdMatcher(txtEmpId.getText())){
             if (isNameMatch(txtName.getText())){
                 if (isGenderMatcher(txtGender.getText())){

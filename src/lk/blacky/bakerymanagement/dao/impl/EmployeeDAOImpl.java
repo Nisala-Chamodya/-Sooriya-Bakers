@@ -2,6 +2,7 @@ package lk.blacky.bakerymanagement.dao.impl;
 
 import lk.blacky.bakerymanagement.dao.custom.EmployeeDAO;
 import lk.blacky.bakerymanagement.dto.EmployeeDTO;
+import lk.blacky.bakerymanagement.entity.EmployeeEntity;
 import lk.blacky.bakerymanagement.util.CRUDUtil;
 
 import java.sql.ResultSet;
@@ -9,7 +10,7 @@ import java.sql.SQLException;
 
 public class EmployeeDAOImpl implements EmployeeDAO {
 
-     public  boolean add(EmployeeDTO employee) {
+    public  boolean add(EmployeeEntity employee) {
         String sql = "INSERT INTO employee VALUES (?, ?, ?, ?,?,?,?,?)";
         try {
             return CRUDUtil.execute(sql, employee.getEmpId(), employee.getName(), employee.getGender(),
@@ -24,7 +25,7 @@ return false;
 
 
 
-    public  boolean update(EmployeeDTO employee) {
+    public  boolean update(EmployeeEntity employee) {
         String sql = "UPDATE employee SET name=?,gender=?,devition=?,salary=?,tp_no=?,e_mail=?,dob=? WHERE  emp_id=? ";
         try {
             return CRUDUtil.execute(sql, employee.getName(), employee.getGender(),
@@ -46,7 +47,7 @@ return false;
 
 
 
-    public EmployeeDTO search(String empId) {
+    public EmployeeEntity search(String empId) {
         String sql = "SELECT * FROM employee WHERE  emp_id=? ";
         ResultSet resultSet = null;
         try {
@@ -58,7 +59,7 @@ return false;
         }
         try {
             if (resultSet.next()) {
-                return new EmployeeDTO(
+                return new EmployeeEntity(
                         resultSet.getString(1),
                         resultSet.getString(2),
                         resultSet.getString(3),
@@ -66,7 +67,7 @@ return false;
                         resultSet.getDouble(5),
                         resultSet.getString(6),
                         resultSet.getString(7),
-                        resultSet.getString(8)
+                        resultSet.getDate(8)
 
 
 

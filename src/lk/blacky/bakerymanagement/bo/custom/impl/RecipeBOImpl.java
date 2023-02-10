@@ -3,23 +3,29 @@ package lk.blacky.bakerymanagement.bo.custom.impl;
 import lk.blacky.bakerymanagement.dao.DAOFactory;
 import lk.blacky.bakerymanagement.dao.custom.RecipeDAO;
 import lk.blacky.bakerymanagement.dto.RecipeDTO;
+import lk.blacky.bakerymanagement.entity.RecipeEntity;
+
+import java.sql.SQLException;
 
 public class RecipeBOImpl implements RecipeBo{
     //dipendancy injection
         RecipeDAO recipeDAO = (RecipeDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.RECIPE);
     @Override
-    public boolean addRecipe(RecipeDTO recipe) {
-        return recipeDAO.add(new RecipeDTO(recipe.getRecipeId(),recipe.getFoodName(),recipe.getDescription()));
+    public boolean addRecipe(RecipeDTO recipe) throws SQLException, ClassNotFoundException {
+        return recipeDAO.add(new RecipeEntity(recipe.getRecipeId(),recipe.getFoodName(),recipe.getDescription()));
     }
 
     @Override
     public RecipeDTO searchRecipe(String recipeId) {
-        return recipeDAO.search(recipeId);
+
+        RecipeEntity search = recipeDAO.search(recipeId);
+        return new RecipeDTO(search.getRecipeId(),search.getFoodName(),search.getDescription());
+
     }
 
     @Override
     public boolean updateRecipe(RecipeDTO recipe) {
-        return recipeDAO.update(new RecipeDTO(recipe.getRecipeId(),recipe.getFoodName(),recipe.getDescription()));
+        return recipeDAO.update(new RecipeEntity(recipe.getRecipeId(),recipe.getFoodName(),recipe.getDescription()));
     }
 
     @Override

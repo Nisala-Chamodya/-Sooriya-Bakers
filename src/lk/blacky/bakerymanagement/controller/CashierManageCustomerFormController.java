@@ -8,10 +8,12 @@ import javafx.scene.layout.AnchorPane;
 import lk.blacky.bakerymanagement.dao.impl.CustomerDAOImpl;
 import lk.blacky.bakerymanagement.dao.custom.CustomerDAO;
 import lk.blacky.bakerymanagement.dto.CustomerDTO;
+import lk.blacky.bakerymanagement.entity.CustomerEntity;
 import lk.blacky.bakerymanagement.util.Navigation;
 import lk.blacky.bakerymanagement.util.Routes;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import static lk.blacky.bakerymanagement.util.Validator.*;
 
@@ -31,7 +33,7 @@ public class CashierManageCustomerFormController {
         Navigation.navigate(Routes.CASHIERDASHBOARD,pane);
     }
 
-    public void btnAddCustomerOnAction(ActionEvent actionEvent) {
+    public void btnAddCustomerOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
 
         if (isIdMatcher(txtCustId.getText())) {
             if (isNameMatch(txtName.getText())) {
@@ -48,7 +50,13 @@ public class CashierManageCustomerFormController {
         String tpNo = txtTpNo.getText();
 
         CustomerDTO customer = new CustomerDTO(custId, name, nic, address, tpNo);
-                            boolean isAdded = customerDAO.add(customer);
+                            boolean isAdded = customerDAO.add(new CustomerEntity(
+                                    customer.getCustId(),
+                                    customer.getName(),
+                                    customer.getNic(),
+                                    customer.getAddress(),
+                                    customer.getTpNo()
+                            ));
                             if (isAdded) {
                                 new Alert(Alert.AlertType.CONFIRMATION, "Customer Added!").show();
                             } else {
@@ -107,7 +115,13 @@ public class CashierManageCustomerFormController {
                             String tpNo=txtTpNo.getText();
 
                             CustomerDTO customer=new CustomerDTO(custId,name,nic,address,tpNo);
-                            boolean isUpdated=  customerDAO.update(customer);
+                            boolean isUpdated=  customerDAO.update(new CustomerEntity(
+                                    customer.getCustId(),
+                                    customer.getName(),
+                                    customer.getNic(),
+                                    customer.getAddress(),
+                                    customer.getTpNo()
+                            ));
                             if (isUpdated){
                                 new Alert(Alert.AlertType.INFORMATION,"Customer Updated Sucessfully").show();
                             }else {
@@ -144,7 +158,7 @@ public class CashierManageCustomerFormController {
     public void btnSearchOnClickAction(ActionEvent actionEvent) {
 
 
-        CustomerDTO customer= customerDAO.search(txtCustId.getText());
+        CustomerEntity customer= customerDAO.search(txtCustId.getText());
         if (customer==null){
             new Alert(Alert.AlertType.INFORMATION,"Customer Not Found").show();
         }else {

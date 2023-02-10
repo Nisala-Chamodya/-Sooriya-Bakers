@@ -2,6 +2,7 @@ package lk.blacky.bakerymanagement.dao.impl;
 
 import lk.blacky.bakerymanagement.dao.custom.RecipeDAO;
 import lk.blacky.bakerymanagement.dto.RecipeDTO;
+import lk.blacky.bakerymanagement.entity.RecipeEntity;
 import lk.blacky.bakerymanagement.util.CRUDUtil;
 
 import java.sql.ResultSet;
@@ -9,7 +10,7 @@ import java.sql.SQLException;
 
 public class RecipeDAOImpl implements RecipeDAO {
 
-    public  boolean add(RecipeDTO recipe) {
+    public  boolean add(RecipeEntity recipe) {
 
         String sql = "INSERT INTO recipe VALUES (?, ?, ?)";
         try {
@@ -23,7 +24,7 @@ public class RecipeDAOImpl implements RecipeDAO {
         return false;
     }
 
-    public  RecipeDTO search(String recipeId) {
+    public  RecipeEntity search(String recipeId) {
         String sql = "SELECT * FROM recipe WHERE  recipe_id=? ";
         ResultSet resultSet = null;
         try {
@@ -35,7 +36,7 @@ public class RecipeDAOImpl implements RecipeDAO {
         }
         try {
             if (resultSet.next()) {
-                return new RecipeDTO(
+                return new RecipeEntity(
                         resultSet.getString(1),
                         resultSet.getString(2),
                         resultSet.getString(3)
@@ -53,7 +54,7 @@ public class RecipeDAOImpl implements RecipeDAO {
         return null;
     }
 
-    public  boolean update(RecipeDTO recipe) {
+    public  boolean update(RecipeEntity recipe) {
 
         String sql = "UPDATE recipe SET name=?,description=? WHERE  recipe_id=? ";
         try {

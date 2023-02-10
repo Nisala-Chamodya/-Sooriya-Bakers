@@ -128,11 +128,13 @@ public class ViewMonthlyIncomeReportFormController {
         HashMap<String,Object> hm=new HashMap<>();
         hm.put("month",txtMonth.getText());
         InputStream inputStream = this.getClass().getResourceAsStream("/lk/blacky/bakerymanagement/report/MonthlyIncome.jrxml");
+
         try {
             JasperReport compileReport = JasperCompileManager.compileReport(inputStream);
             JasperPrint jasperPrint=  JasperFillManager
                     .fillReport(compileReport,hm, DBConnection.getInstance().getConnection());
             //JasperPrintManager.printReport(jasperPrint,true);
+             System.out.println("Hello");
             JasperViewer.viewReport(jasperPrint);
         } catch (JRException | ClassNotFoundException | SQLException e) {
             // e.printStackTrace();

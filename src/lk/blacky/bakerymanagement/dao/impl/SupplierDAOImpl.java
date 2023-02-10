@@ -2,6 +2,7 @@ package lk.blacky.bakerymanagement.dao.impl;
 
 import lk.blacky.bakerymanagement.dao.custom.SupplierDAO;
 import lk.blacky.bakerymanagement.dto.SupplierDTO;
+import lk.blacky.bakerymanagement.entity.SupplierEntity;
 import lk.blacky.bakerymanagement.util.CRUDUtil;
 
 import java.sql.ResultSet;
@@ -9,11 +10,11 @@ import java.sql.SQLException;
 
 public class SupplierDAOImpl implements SupplierDAO {
 
-    public  boolean add(SupplierDTO supplier) {
+    public  boolean add(SupplierEntity supplier) {
         String sql = "INSERT INTO supplier VALUES (?, ?, ?, ?,?)";
         try {
             return CRUDUtil.execute(sql, supplier.getSupplierId(), supplier.getName(), supplier.getAddress(),
-                    supplier.getTpNo(), supplier.geteMail());
+                    supplier.getTpNo(), supplier.getEmail());
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -22,7 +23,7 @@ public class SupplierDAOImpl implements SupplierDAO {
         return false;
     }
 
-    public  SupplierDTO search(String supplierId) {
+    public  SupplierEntity search(String supplierId) {
         String sql = "SELECT * FROM supplier WHERE  supplier_id=? ";
         ResultSet resultSet = null;
         try {
@@ -34,7 +35,7 @@ public class SupplierDAOImpl implements SupplierDAO {
         }
         try {
             if (resultSet.next()) {
-                return new SupplierDTO(
+                return new SupplierEntity(
                         resultSet.getString(1),
                         resultSet.getString(2),
                         resultSet.getString(3),
@@ -66,12 +67,12 @@ public class SupplierDAOImpl implements SupplierDAO {
     }
 
 
-    public  boolean update(SupplierDTO supplier)  {
+    public  boolean update(SupplierEntity supplier)  {
 
         String sql = "UPDATE supplier SET name=?,address=?,tp_no=?,e_mail=? WHERE  supplier_id=? ";
         try {
             return CRUDUtil.execute(sql, supplier.getName(), supplier.getAddress(), supplier.getTpNo(),
-                    supplier.geteMail(), supplier.getSupplierId());
+                    supplier.getEmail(), supplier.getSupplierId());
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {

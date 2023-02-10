@@ -3,14 +3,14 @@ package lk.blacky.bakerymanagement.dto;
 public class ProductDTO {
     private String productId;
     private  String productName;
-    private  String price;
+    private  double price;
     private String description;
-    private String availability;
+    private int availability;
 
     public ProductDTO() {
     }
 
-    public ProductDTO(String productId, String productName, String price, String description, String availability) {
+    public ProductDTO(String productId, String productName, double price, String description, int availability) {
         this.productId = productId;
         this.productName = productName;
         this.price = price;
@@ -34,11 +34,11 @@ public class ProductDTO {
         this.productName = productName;
     }
 
-    public String getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -50,17 +50,17 @@ public class ProductDTO {
         this.description = description;
     }
 
-    public String getAvailability() {
+    public int getAvailability() {
         return availability;
     }
 
-    public void setAvailability(String availability) {
+    public void setAvailability(int availability) {
         this.availability = availability;
     }
 
     @Override
     public String toString() {
-        return "ProductDto{" +
+        return "ProductDTO{" +
                 "productId='" + productId + '\'' +
                 ", productName='" + productName + '\'' +
                 ", price=" + price +

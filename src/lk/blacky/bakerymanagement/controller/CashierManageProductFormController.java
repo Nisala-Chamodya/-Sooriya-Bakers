@@ -12,6 +12,7 @@ import lk.blacky.bakerymanagement.util.Navigation;
 import lk.blacky.bakerymanagement.util.Routes;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import static lk.blacky.bakerymanagement.util.Validator.*;
 
@@ -32,7 +33,7 @@ public class CashierManageProductFormController {
         Navigation.navigate(Routes.CASHIERDASHBOARD,pane);
     }
 
-    public void btnAddProductOnAction(ActionEvent actionEvent) {
+    public void btnAddProductOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
 
         if (isProductIdMatcher(txtProductId.getText())) {
             if (isNameMatch(txtProductName.getText())){

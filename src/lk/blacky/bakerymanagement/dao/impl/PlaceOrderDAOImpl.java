@@ -64,9 +64,9 @@ public class PlaceOrderDAOImpl implements PlaceOrderDAO {
                     new ProductDTO(
                             rst.getString(1),
                             rst.getString(2),
-                            rst.getString(3),
+                            rst.getDouble(3),
                             rst.getString(4),
-                            rst.getString(5)
+                            rst.getInt(5)
 
 
             ) );
@@ -83,9 +83,9 @@ public class PlaceOrderDAOImpl implements PlaceOrderDAO {
                     new ProductDTO(
                             rst.getString(1),
                             rst.getString(2),
-                            rst.getString(3),
+                            rst.getDouble(3),
                             rst.getString(4),
-                            rst.getString(5)
+                            rst.getInt(5)
 
 
                     ) );
